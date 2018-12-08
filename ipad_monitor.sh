@@ -32,9 +32,11 @@ done
 
 # Detect primary display
 PRIMARY_DISPLAY=$(xrandr | perl -ne 'print "$1" if /(\w*)\s*connected\s*primary/')
+echo "Primary Display is:" $PRIMARY_DISPLAY
 
 # Add display mode
 RANDR_MODE=$(cvt "$WIDTH" "$HEIGHT" 60 | sed '2s/^.*Modeline\s*\".*\"//;2q;d')
+echo "Display mode is:" $RANDR_MODE
 xrandr --addmode $DIS_NAME $MODE_NAME 2>/dev/null
 # If the mode doesn't exist then make mode and retry
 if ! [ $? -eq 0 ]; then
@@ -61,7 +63,7 @@ trap finish EXIT
 # Get the display's position
 CLIP=$(xrandr | grep "^$DEVICE.*$" | grep -o '[0-9]*x[0-9]*+[0-9]*+[0-9]*')
 CLIP_POS=$(xrandr | perl -ne 'print "$1" if /'$DIS_NAME'\s*connected\s*(\d*x\d*\+\d*\+\d*)/')
-echo $CLIP_POS
+echo "Clip position is:" $CLIP_POS
 # Share screen
 x11vnc -usepw -noxdamage -repeat -ncache 10 -nowf -clip $CLIP_POS
 #tightvncserver -nolisten tcp -localhost -nevershared :1
