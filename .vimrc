@@ -141,3 +141,8 @@ set splitright
 set laststatus=2
 set noshowmode
 colorscheme 256-jungle
+
+inoremap <c-d> <esc>ddi
+inoremap <c-u> <esc>viWUi
+nnoremap <leader>ev :vsplit ~/.vimrc<cr>
+nnoremap <leader>sv :source ~/.vimrc<cr>
