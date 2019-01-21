@@ -81,6 +81,8 @@ if dein#load_state('~/.cache/dein')
     let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
     let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
     call dein#add('parsonsmatt/intero-neovim', {'on_ft':'haskell'} )
+    augroup interoMaps
+        au!
         " Automatically reload on save
         au BufWritePost *.hs InteroReload
         " Lookup the type of expression under the cursor
@@ -107,6 +109,7 @@ if dein#load_state('~/.cache/dein')
         " Managing targets
         " Prompts you to enter targets (no silent):
         au FileType haskell nnoremap <leader>nt :InteroSetTargets<CR>
+    augroup END
   endif
 
   " lazy load on filetype
