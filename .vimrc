@@ -3,7 +3,7 @@ if &compatible
 endif
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
+let mapleader = "\\"
 if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
@@ -14,6 +14,8 @@ if dein#load_state('~/.cache/dein')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
 
+    call dein#add('Asheq/close-buffers.vim', {'on_cmd': ['CloseOtherBuffers','CloseHiddenBuffers','CloseBufferMenu','CloseNamelessBuffers','CloseThisBuffer']})
+    call dein#add('tpope/vim-obsession')
     call dein#add('tpope/vim-repeat', {'on_map' : '.'} )
     " repeat the command even if it comes from a plugin
     call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
@@ -30,7 +32,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('w0rp/ale')
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_fixers = {
-                \ 'haskell' : ['hlint']
+                \ 'haskell' : ['hlint'],
+                \ 'tex' : ['chktex']
                 \ }
 
     call dein#add('christoomey/vim-system-copy')
@@ -101,13 +104,13 @@ if dein#load_state('~/.cache/dein')
             au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
 
             " Load individual modules
-            au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
-            au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
+            au FileType haskell nnoremap <leader>il :InteroLoadCurrentModule<CR>
+            au FileType haskell nnoremap <leader>if :InteroLoadCurrentFile<CR>
 
             " Type-related information
             " Heads up! These next two differ from the rest.
-            au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
-            au FileType haskell map <silent> <leader>T <Plug>InteroType
+            au FileType haskell nnoremap <silent> <leader>t <Plug>InteroGenericType
+            au FileType haskell nnoremap <silent> <leader>T <Plug>InteroType
             au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
 
             " Navigation
@@ -118,8 +121,11 @@ if dein#load_state('~/.cache/dein')
             au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
         augroup END
     endif
-    " lazy load on filetype
+
     call dein#add('LnL7/vim-nix')
+
+    call dein#add('lervag/vimtex', {'on_ft': 'tex'})
+    call dein#add('xuhdev/vim-latex-live-preview', {'on_ft': 'tex'})
 
     " lazy load on command executed
     call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
@@ -155,3 +161,4 @@ inoremap <c-d> <esc>ddi
 inoremap <c-u> <esc>viWUi
 nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source ~/.vimrc<cr>
+nnoremap <leader>rm :!rm %
