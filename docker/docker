@@ -1,0 +1,4 @@
+#!/bin/bash -e
+# The goal of this script is to maintain the security privileges of sudo
+# Without having to constantly type "sudo"
+exec sudo /usr/bin/docker "$@"
