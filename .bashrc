@@ -115,3 +115,11 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export EDITOR=nvim
+eval "$(stack --bash-completion-script stack)"
+export PATH="/home/vides/dotfiles/docker:$PATH"
+
+export GITAWAREPROMPT=~/.cache/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+export PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
