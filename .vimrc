@@ -16,6 +16,9 @@ if dein#load_state('~/.cache/dein')
 
     call dein#add('Asheq/close-buffers.vim', {'on_cmd': ['CloseOtherBuffers','CloseHiddenBuffers','CloseBufferMenu','CloseNamelessBuffers','CloseThisBuffer']})
     call dein#add('tpope/vim-obsession')
+    " to save the state of a session
+    call dein#add('Raimondi/delimitMate')
+    " to provide automatic closing of delimiters (quotes, parenthesis, brackets, etc
     call dein#add('tpope/vim-repeat', {'on_map' : '.'} )
     " repeat the command even if it comes from a plugin
     call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
@@ -31,6 +34,9 @@ if dein#load_state('~/.cache/dein')
 
     call dein#add('w0rp/ale')
     let g:ale_lint_on_text_changed = 'never'
+    let g:ale_linters = {
+                \ 'haskell' : ['cabal_ghc', 'ghc', 'ghc_mod', 'hdevtools', 'hie', 'hlint', 'stack_build']
+                \ }
     let g:ale_fixers = {
                 \ 'haskell' : ['hlint'],
                 \ 'tex' : ['chktex']
@@ -124,6 +130,11 @@ if dein#load_state('~/.cache/dein')
 
     call dein#add('LnL7/vim-nix')
 
+    call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
+    augroup agdaMaps
+        au!
+        au FileType agda nnoremap <LocalLeader>vcs :vsplit ~/.cache/dein/repos/github.com/derekelkins/agda-vim/agda-utf8.vim<CR>
+    augroup END
     call dein#add('lervag/vimtex', {'on_ft': 'tex'})
     call dein#add('xuhdev/vim-latex-live-preview', {'on_ft': 'tex'})
 
@@ -140,7 +151,7 @@ syntax enable
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set autoread      " Reload files changed outside vim
 "set cursorline    " highlight the current line
-set textwidth=100
+set textwidth=80
 set number
 set relativenumber
 
@@ -156,6 +167,7 @@ set splitright
 set laststatus=2
 set noshowmode
 colorscheme 256-jungle
+highlight SpellBad ctermbg=none ctermfg=none cterm=underline
 
 inoremap <c-d> <esc>ddi
 inoremap <c-u> <esc>viWUi
