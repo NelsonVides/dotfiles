@@ -25,4 +25,8 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-if [ -e /home/vides/.nix-profile/etc/profile.d/nix.sh ]; then . /home/vides/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e /home/vides/.nix-profile/etc/profile.d/nix.sh ]; then
+    . /home/vides/.nix-profile/etc/profile.d/nix.sh;
+fi # added by Nix installer
+
+export EDITOR=nvim
