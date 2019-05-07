@@ -32,8 +32,8 @@ if [ -e "$HOME/.vimrc" ]; then
   cp -f "$HOME/.vimrc" "$HOME/.vimrc.bak" 2>/dev/null || true
 fi
 
-cp -a ./tmux/. "$HOME"/.tmux/
 ln -sf "$HOME"/dotfiles/tmux/.tmux.conf "$HOME"/.tmux.conf;
+ln -sf "$HOME"/dotfiles/.vimrc "$HOME"/.vimrc;
 
 # Install TPM plugins.
 # TPM requires running tmux server, as soon as `tmux start-server` does not work
