@@ -2,12 +2,12 @@ if &compatible
     set nocompatible
 endif
 " Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.config/dein/repos/github.com/Shougo/dein.vim
 let mapleader = "\\"
-if dein#load_state('~/.cache/dein')
-    call dein#begin('~/.cache/dein')
+if dein#load_state('~/.config/dein')
+    call dein#begin('~/.config/dein')
 
-    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('~/.config/dein/repos/github.com/Shougo/dein.vim')
     call dein#add('Shougo/deoplete.nvim')
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
@@ -133,7 +133,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
     augroup agdaMaps
         au!
-        au FileType agda nnoremap <LocalLeader>vcs :vsplit ~/.cache/dein/repos/github.com/derekelkins/agda-vim/agda-utf8.vim<CR>
+        au FileType agda nnoremap <LocalLeader>vcs :vsplit ~/.config/dein/repos/github.com/derekelkins/agda-vim/agda-utf8.vim<CR>
     augroup END
     call dein#add('lervag/vimtex', {'on_ft': 'tex'})
     call dein#add('xuhdev/vim-latex-live-preview', {'on_ft': 'tex'})
