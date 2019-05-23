@@ -34,20 +34,6 @@ if dein#load_state('~/.config/dein')
     call dein#add('tpope/vim-fugitive', { 'on_cmd': [ 'Git', 'Gstatus', 'Gread', 'Gwrite', 'Glog', 'Gcommit', 'Gblame', 'Ggrep', 'Gdiff', ] })
     " Simply a super git wrapper: https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 
-    call dein#add('w0rp/ale')
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_list_window_size = 5
-    " Only run linters named in ale_linters settings.
-    let g:ale_linters_explicit = 1
-    let g:ale_linters = {
-                \ 'haskell' : ['cabal_ghc', 'ghc', 'ghc_mod', 'hdevtools', 'hie', 'hlint', 'stack_build'],
-                \ 'erlang' : []
-                \ }
-    let g:ale_fixers = {
-                \ 'haskell' : ['hlint'],
-                \ 'tex' : ['chktex']
-                \ }
-
     call dein#add('christoomey/vim-system-copy')
     " cpiw => copy word into system clipboard
     " cpi' => copy inside single quotes to system clipboard
