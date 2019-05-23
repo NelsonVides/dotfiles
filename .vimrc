@@ -14,7 +14,9 @@ if dein#load_state('~/.config/dein')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
 
+    call dein#add('tpope/vim-sensible')
     call dein#add('Asheq/close-buffers.vim', {'on_cmd': ['CloseOtherBuffers','CloseHiddenBuffers','CloseBufferMenu','CloseNamelessBuffers','CloseThisBuffer']})
+    call dein#add('qpkorr/vim-bufkill')
     call dein#add('tpope/vim-obsession')
     " to save the state of a session
     call dein#add('Raimondi/delimitMate')
@@ -34,8 +36,12 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('w0rp/ale')
     let g:ale_lint_on_text_changed = 'never'
+    let g:ale_list_window_size = 5
+    " Only run linters named in ale_linters settings.
+    let g:ale_linters_explicit = 1
     let g:ale_linters = {
-                \ 'haskell' : ['cabal_ghc', 'ghc', 'ghc_mod', 'hdevtools', 'hie', 'hlint', 'stack_build']
+                \ 'haskell' : ['cabal_ghc', 'ghc', 'ghc_mod', 'hdevtools', 'hie', 'hlint', 'stack_build'],
+                \ 'erlang' : []
                 \ }
     let g:ale_fixers = {
                 \ 'haskell' : ['hlint'],
@@ -130,6 +136,11 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('LnL7/vim-nix')
 
+    call dein#add('vim-erlang/vim-erlang-omnicomplete', {'on_ft' : 'erlang'})
+    call dein#add('vim-erlang/vim-erlang-skeletons', {'on_ft' : 'erlang'})
+    call dein#add('vim-erlang/vim-erlang-compiler', {'on_ft' : 'erlang'})
+    call dein#add('vim-erlang/vim-erlang-tags', {'on_ft' : 'erlang'})
+
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
     augroup agdaMaps
         au!
@@ -166,6 +177,7 @@ set splitbelow
 set splitright
 set laststatus=2
 set noshowmode
+set noequalalways
 colorscheme 256-jungle
 highlight SpellBad ctermbg=none ctermfg=none cterm=underline
 
@@ -174,3 +186,4 @@ inoremap <c-u> <esc>viWUi
 nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>rm :!rm %
+noremap <Esc><Esc> :update<CR>
