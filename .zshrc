@@ -102,3 +102,6 @@ fi
 source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
 DEFAULT_USER='nelsonvides'
 EDITOR='nvim'
+if [ -f ~/.brew ]; then
+    source ~/.brew
+fi
