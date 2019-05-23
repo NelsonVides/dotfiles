@@ -32,9 +32,20 @@ if [ -e "$HOME/.vimrc" ]; then
   cp -f "$HOME/.vimrc" "$HOME/.vimrc.bak" 2>/dev/null || true
 fi
 
+if [ -e "$HOME/.zshrc" ]; then
+  printf "Found existing .zshrc in your \$HOME directory. Will create a backup at $HOME/.zshrc.bak\n"
+  cp -f "$HOME/.zshrc" "$HOME/.zshrc.bak" 2>/dev/null || true
+fi
+
+if [ -e "$HOME/.bashrc" ]; then
+  printf "Found existing .bashrc in your \$HOME directory. Will create a backup at $HOME/.bashrc.bak\n"
+  cp -f "$HOME/.bashrc" "$HOME/.bashrc.bak" 2>/dev/null || true
+fi
+
 ln -sf "$HOME"/dotfiles/tmux/.tmux.conf "$HOME"/.tmux.conf;
 ln -sf "$HOME"/dotfiles/.vimrc "$HOME"/.vimrc;
 ln -sf "$HOME"/dotfiles/.zshrc "$HOME"/.zshrc;
+ln -sf "$HOME"/dotfiles/.bashrc "$HOME"/.bashrc;
 
 # Install TPM plugins.
 # TPM requires running tmux server, as soon as `tmux start-server` does not work
