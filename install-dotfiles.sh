@@ -34,6 +34,7 @@ fi
 
 ln -sf "$HOME"/dotfiles/tmux/.tmux.conf "$HOME"/.tmux.conf;
 ln -sf "$HOME"/dotfiles/.vimrc "$HOME"/.vimrc;
+ln -sf "$HOME"/dotfiles/.zshrc "$HOME"/.zshrc;
 
 # Install TPM plugins.
 # TPM requires running tmux server, as soon as `tmux start-server` does not work
