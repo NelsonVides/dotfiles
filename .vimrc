@@ -138,6 +138,8 @@ if dein#load_state('~/.config/dein')
     " lazy load on command executed
     call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
 
+    call dein#add('vimlab/split-term.vim', {'on_cmd': ['Term', 'VTerm', '10Term']})
+
     call dein#end()
     call dein#save_state()
 endif
