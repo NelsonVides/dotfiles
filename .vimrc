@@ -168,6 +168,7 @@ set noshowmode
 set noequalalways
 colorscheme 256-jungle
 highlight SpellBad ctermbg=none ctermfg=none cterm=underline
+highlight Comment ctermfg=red
 
 inoremap <c-d> <esc>ddi
 inoremap <c-u> <esc>viWUi
@@ -177,4 +178,3 @@ nnoremap <leader>rm :!rm %
 noremap <Esc><Esc> :update<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-hi Comment ctermfg=red
