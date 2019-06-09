@@ -35,9 +35,13 @@ if dein#load_state('~/.config/dein')
     " Simply a super git wrapper: https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 
     call dein#add('christoomey/vim-system-copy')
+    let g:system_copy#copy_command='xclip -selection clipboard'
+    let g:system_copy#paste_command='xclip -selection clipboard -o'
     " cpiw => copy word into system clipboard
     " cpi' => copy inside single quotes to system clipboard
     " The sequence cv is mapped to paste the content of system clipboard to the next line.
+
+    call dein#add('mbbill/undotree')
 
     call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('flazz/vim-colorschemes')
