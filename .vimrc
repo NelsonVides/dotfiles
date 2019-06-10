@@ -41,7 +41,8 @@ if dein#load_state('~/.config/dein')
     " cpi' => copy inside single quotes to system clipboard
     " The sequence cv is mapped to paste the content of system clipboard to the next line.
 
-    call dein#add('mbbill/undotree')
+    call dein#add('mbbill/undotree', {'on_cmd': 'UndotreeToggle'})
+    " UndotreeToggle to show the undo tree
 
     call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('flazz/vim-colorschemes')
