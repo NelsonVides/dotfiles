@@ -102,3 +102,4 @@ DEFAULT_USER='nelsonvides'
 if [ -f ~/.brew ]; then
     source ~/.brew
 fi
+export ERL_AFLAGS="-kernel shell_history enabled"
