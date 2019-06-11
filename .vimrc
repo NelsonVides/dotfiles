@@ -145,6 +145,8 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('vimlab/split-term.vim', {'on_cmd': ['Term', 'VTerm', '10Term']})
 
+    call dein#add('jeetsukumaran/vim-buffergator')
+
     call dein#end()
     call dein#save_state()
 endif
@@ -183,3 +185,4 @@ nnoremap <leader>rm :!rm %
 noremap <Esc><Esc> :update<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufNewFile,BufRead *.config set filetype=erlang
