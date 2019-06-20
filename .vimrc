@@ -147,6 +147,8 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('jeetsukumaran/vim-buffergator')
 
+    call dein#add('majutsushi/tagbar')
+
     call dein#end()
     call dein#save_state()
 endif
@@ -186,3 +188,6 @@ noremap <Esc><Esc> :update<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufNewFile,BufRead *.config set filetype=erlang
+nnoremap <leader>n :1tag!<CR>
+nnoremap <leader>f :TagbarToggle<CR>
+nnoremap <leader>c :TagbarOpenAutoClose<CR>
