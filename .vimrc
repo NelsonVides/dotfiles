@@ -131,6 +131,7 @@ if dein#load_state('~/.config/dein')
     call dein#add('vim-erlang/vim-erlang-skeletons', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-compiler', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-tags', {'on_ft' : 'erlang'})
+    call dein#add('vim-erlang/erlang-motions.vim', {'on_ft' : 'erlang'})
 
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
     augroup agdaMaps
