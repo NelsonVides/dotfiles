@@ -150,6 +150,11 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('majutsushi/tagbar')
 
+    if has('nvim') && isdirectory("/usr/local/opt/llvm/lib/")
+        call dein#add('arakashic/chromatica.nvim')
+        let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
+    endif
+
     call dein#end()
     call dein#save_state()
 endif
