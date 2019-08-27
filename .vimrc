@@ -2,6 +2,11 @@ if &compatible
     set nocompatible
 endif
 " Add the dein installation directory into runtimepath
+
+function! LightlineObsession()
+    return '%{ObsessionStatus(''$'', '''')}'
+endfunction
+
 set runtimepath+=~/.config/dein/repos/github.com/Shougo/dein.vim
 let mapleader = "\\"
 if dein#load_state('~/.config/dein')
@@ -31,7 +36,7 @@ if dein#load_state('~/.config/dein')
     call dein#add('tpope/vim-commentary')
     " gc gets mapped to 'g - comment'
     " so gcc comments, gc to comment the target of a motion, etc
-    call dein#add('tpope/vim-fugitive', { 'on_cmd': [ 'Git', 'Gstatus', 'Gread', 'Gwrite', 'Glog', 'Gcommit', 'Gblame', 'Ggrep', 'Gdiff', ] })
+    call dein#add('tpope/vim-fugitive')
     " Simply a super git wrapper: https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 
     call dein#add('christoomey/vim-system-copy')
@@ -48,32 +53,21 @@ if dein#load_state('~/.config/dein')
     call dein#add('flazz/vim-colorschemes')
     call dein#add('ntpeters/vim-better-whitespace', {'on_cmd': 'EnableWhitespace'})
     call dein#add('itchyny/lightline.vim')
-    call dein#add('maximbaz/lightline-ale')
     let g:lightline = {
                 \ 'colorscheme': 'wombat',
                 \ 'active': {
-                \   'left': [ [ 'mode', 'paste' ],
-                \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-                \   'right': [ ['lineinfo'],
-                \              ['percent'],
-                \              ['fileformat', 'fileencoding', 'filetype'],
-                \              ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
+                \   'left':  [ ['mode', 'paste' ],
+                \              ['gitbranch', 'readonly', 'filename', 'modified' ] ],
+                \   'right': [ ['percent', 'lineinfo'],
+                \              ['fileformat', 'fileencoding', 'filetype', 'filesize'],
+                \              ['obsession'] ]
                 \ },
                 \ 'component_function': {
                 \   'gitbranch': 'fugitive#head'
                 \ },
-                \ }
-    let g:lightline.component_expand = {
-                \  'linter_checking': 'lightline#ale#checking',
-                \  'linter_warnings': 'lightline#ale#warnings',
-                \  'linter_errors': 'lightline#ale#errors',
-                \  'linter_ok': 'lightline#ale#ok',
-                \ }
-    let g:lightline.component_type = {
-                \     'linter_checking': 'left',
-                \     'linter_warnings': 'warning',
-                \     'linter_errors': 'error',
-                \     'linter_ok': 'left',
+                \ 'component_expand': {
+                \   'obsession': 'LightlineObsession'
+                \ },
                 \ }
 
     if has('nvim')
