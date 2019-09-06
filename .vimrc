@@ -141,12 +141,13 @@ if dein#load_state('~/.config/dein')
     call dein#add('vimlab/split-term.vim', {'on_cmd': ['Term', 'VTerm', '10Term']})
 
     call dein#add('jeetsukumaran/vim-buffergator')
+    call dein#add('gcmt/taboo.vim')
 
     call dein#add('majutsushi/tagbar')
 
     if has('nvim') && isdirectory("/usr/local/opt/llvm/lib/")
         call dein#add('arakashic/chromatica.nvim')
-        let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
+        let g:chromatica#libclang_path='/usr/local/opt/llvm/lib/libclang.dylib'
     endif
 
     call dein#end()
@@ -186,8 +187,12 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>rm :!rm %
 noremap <Esc><Esc> :update<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-m> :NERDTreeFocus<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufNewFile,BufRead *.config set filetype=erlang
+autocmd BufNewFile,BufRead *.spec set filetype=erlang
 nnoremap <leader>n :1tag!<CR>
 nnoremap <leader>f :TagbarToggle<CR>
 nnoremap <leader>c :TagbarOpenAutoClose<CR>
+set sessionoptions+=tabpages,globals
+nnoremap <leader>cp :let @" = expand("%:p")<CR>
