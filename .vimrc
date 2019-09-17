@@ -187,6 +187,8 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>rm :!rm %
 noremap <Esc><Esc> :update<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd FileType gitcommit setlocal spell
 nnoremap <C-m> :NERDTreeFocus<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufNewFile,BufRead *.config set filetype=erlang
