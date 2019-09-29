@@ -145,6 +145,8 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('majutsushi/tagbar')
 
+    call dein#add('rust-lang/rust.vim', {'on_ft': 'rust'})
+
     if has('nvim') && isdirectory("/usr/local/opt/llvm/lib/")
         call dein#add('arakashic/chromatica.nvim')
         let g:chromatica#libclang_path='/usr/local/opt/llvm/lib/libclang.dylib'
