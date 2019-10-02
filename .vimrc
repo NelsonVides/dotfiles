@@ -124,7 +124,10 @@ if dein#load_state('~/.config/dein')
     call dein#add('vim-erlang/vim-erlang-omnicomplete', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-skeletons', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-compiler', {'on_ft' : 'erlang'})
-    call dein#add('vim-erlang/vim-erlang-tags', {'on_ft' : 'erlang'})
+    call dein#add('NelsonVides/vim-erlang-tags', {
+                \ 'on_ft' : 'erlang',
+                \ 'on_func': ['BuildMongooseTags', 'AsyncVimErlangTags']
+                \ })
     call dein#add('vim-erlang/erlang-motions.vim', {'on_ft' : 'erlang'})
 
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
@@ -162,7 +165,7 @@ syntax enable
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set autoread      " Reload files changed outside vim
 "set cursorline    " highlight the current line
-set textwidth=80
+set textwidth=100
 set number
 set relativenumber
 
@@ -200,3 +203,7 @@ nnoremap <leader>f :TagbarToggle<CR>
 nnoremap <leader>c :TagbarOpenAutoClose<CR>
 set sessionoptions+=tabpages,globals
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
+
+function! BuildMongooseTags()
+    call AsyncVimErlangTags("-i _build/prod -i _build/mim1 -i _build/mim2 -i _build/mim3 -i _build/fed1 -i _build/reg1")
+endfunction
