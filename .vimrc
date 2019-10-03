@@ -205,5 +205,10 @@ set sessionoptions+=tabpages,globals
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
 
 function! BuildMongooseTags()
-    call AsyncVimErlangTags("-i _build/prod -i _build/mim1 -i _build/mim2 -i _build/mim3 -i _build/fed1 -i _build/reg1")
+    let arg = "--otp "
+          \ . "--include include src test big_tests _build "
+          \ . "--ignore _build/mim1 _build/mim2 _build/mim3 _build/fed1 _build/reg1 _build/prod "
+          \ .           "big_tests/_build/ct_report big_tests/deps/ "
+          \ .           "_build/default/lib/mongooseim "
+    call AsyncVimErlangTags(arg)
 endfunction
