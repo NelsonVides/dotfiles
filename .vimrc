@@ -121,6 +121,7 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('LnL7/vim-nix')
 
+    call dein#add('vim-erlang/erlang-motions.vim', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-omnicomplete', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-skeletons', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-compiler', {'on_ft' : 'erlang'})
@@ -128,7 +129,6 @@ if dein#load_state('~/.config/dein')
                 \ 'on_ft' : 'erlang',
                 \ 'on_func': ['BuildMongooseTags', 'AsyncVimErlangTags']
                 \ })
-    call dein#add('vim-erlang/erlang-motions.vim', {'on_ft' : 'erlang'})
 
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
     augroup agdaMaps
