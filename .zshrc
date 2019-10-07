@@ -95,11 +95,17 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-fpath=(/usr/local/share/zsh-completions $fpath)
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
-DEFAULT_USER='nelsonvides'
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 if [ -f ~/.brew ]; then
     source ~/.brew
+    fpath=(/usr/local/share/zsh-completions $fpath)
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+else
+    fpath=(/usr/share/zsh-completions $fpath)
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 fi
+DEFAULT_USER='nelsonvides'
 export ERL_AFLAGS="-kernel shell_history enabled"
