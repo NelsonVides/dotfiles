@@ -3,10 +3,31 @@ if &compatible
 endif
 " Add the dein installation directory into runtimepath
 
+function! ChompSystemEndOfLine(string)
+    return substitute(a:string, '\n\+$', '', '')
+endfunction
+
 function! LightlineObsession()
     return '%{ObsessionStatus(''$'', '''')}'
 endfunction
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OTP Tags section
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! AsyncBuildOtpTags()
+    let otppath = ChompSystemEndOfLine(system("asdf where erlang"))
+    let arg = "-i " . otppath . " -o " . otppath . "/otptags"
+    call AsyncVimErlangTags(arg)
+endfunction
+
+function! GetOtpTagsPath()
+    return ChompSystemEndOfLine(system("asdf where erlang")) . "/otptags"
+endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" dein section
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set runtimepath+=~/.config/dein/repos/github.com/Shougo/dein.vim
 let mapleader = "\\"
 if dein#load_state('~/.config/dein')
@@ -79,44 +100,44 @@ if dein#load_state('~/.config/dein')
         let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
         let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
         let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-        call dein#add('parsonsmatt/intero-neovim', {'on_ft':'haskell'} )
-        augroup interoMaps
-            au!
-            " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
-
-            " Background process and window management
-            au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
-            au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
-
-            " Open intero/GHCi split horizontally
-            au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
-            " Open intero/GHCi split vertically
-            au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-            au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
-
-            " Reloading (pick one)
-            " Automatically reload on save
-            au BufWritePost *.hs InteroReload
-            " Manually save and reload
-            au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
-
-            " Load individual modules
-            au FileType haskell nnoremap <leader>il :InteroLoadCurrentModule<CR>
-            au FileType haskell nnoremap <leader>if :InteroLoadCurrentFile<CR>
-
-            " Type-related information
-            " Heads up! These next two differ from the rest.
-            au FileType haskell nnoremap <silent> <leader>t <Plug>InteroGenericType
-            au FileType haskell nnoremap <silent> <leader>T <Plug>InteroType
-            au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
-
-            " Navigation
-            au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
-
-            " Managing targets
-            " Prompts you to enter targets (no silent):
-            au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
-        augroup END
+        call dein#add('parsonsmatt/intero-neovim', {
+                    \ 'on_ft':'haskell',
+                    \ 'hook_post_source': "
+                    \ \" Maps for intero. Restrict to Haskell buffers so the bindings don't collide.\n
+                    \
+                    \ \" Background process and window management\n
+                    \ au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>\n
+                    \ au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>\n
+                    \
+                    \ \" Open intero/GHCi split horizontally\n
+                    \ au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>\n
+                    \ \" Open intero/GHCi split vertically\n
+                    \ au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H\n
+                    \ au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>\n
+                    \
+                    \ \" Reloading (pick one)\n
+                    \ \" Automatically reload on save\n
+                    \ au BufWritePost *.hs InteroReload\n
+                    \ \" Manually save and reload\n
+                    \ au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>\n
+                    \
+                    \ \" Load individual modules\n
+                    \ au FileType haskell nnoremap <leader>il :InteroLoadCurrentModule<CR>\n
+                    \ au FileType haskell nnoremap <leader>if :InteroLoadCurrentFile<CR>\n
+                    \
+                    \ \" Type-related information\n
+                    \ \" Heads up! These next two differ from the rest.\n
+                    \ au FileType haskell nnoremap <silent> <leader>t <Plug>InteroGenericType\n
+                    \ au FileType haskell nnoremap <silent> <leader>T <Plug>InteroType\n
+                    \ au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>\n
+                    \
+                    \ \" Navigation\n
+                    \ au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>\n
+                    \
+                    \ \" Managing targets\n
+                    \ \" Prompts you to enter targets (no silent):\n
+                    \ au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>\n
+                    \ "})
     endif
 
     call dein#add('LnL7/vim-nix')
@@ -127,7 +148,8 @@ if dein#load_state('~/.config/dein')
     call dein#add('vim-erlang/vim-erlang-compiler', {'on_ft' : 'erlang'})
     call dein#add('NelsonVides/vim-erlang-tags', {
                 \ 'on_ft' : 'erlang',
-                \ 'on_func': ['BuildMongooseTags', 'AsyncVimErlangTags']
+                \ 'on_func': ['BuildMongooseTags', 'AsyncVimErlangTags'],
+                \ 'hook_post_source': 'let &tags .= "," . GetOtpTagsPath()'
                 \ })
 
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
@@ -195,7 +217,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
 nnoremap <C-m> :NERDTreeFocus<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufNewFile,BufRead *.config set filetype=erlang
 autocmd BufNewFile,BufRead *.spec set filetype=erlang
 nnoremap <leader>n :1tag!<CR>
@@ -204,11 +226,15 @@ nnoremap <leader>c :TagbarOpenAutoClose<CR>
 set sessionoptions+=tabpages,globals
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MongooseIM section
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! BuildMongooseTags()
-    let arg = "--otp "
-          \ . "--include include src test big_tests _build "
+    let arg = "--include include src test big_tests _build "
           \ . "--ignore _build/mim1 _build/mim2 _build/mim3 _build/fed1 _build/reg1 _build/prod "
           \ .           "big_tests/_build/ct_report big_tests/deps/ "
           \ .           "_build/default/lib/mongooseim "
     call AsyncVimErlangTags(arg)
 endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd VimEnter * call dein#call_hook('post_source')
