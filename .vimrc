@@ -233,7 +233,7 @@ function! BuildMongooseTags()
     let arg = "--include include src test big_tests _build "
           \ . "--ignore _build/mim1 _build/mim2 _build/mim3 _build/fed1 _build/reg1 _build/prod "
           \ .           "big_tests/_build/ct_report big_tests/deps/ "
-          \ .           "_build/default/lib/mongooseim "
+          \ .           "_build/default/lib/mongooseim --match-mode full_func_name_args"
     call AsyncVimErlangTags(arg)
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
