@@ -102,6 +102,7 @@ if [ -f ~/.brew ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+    ulimit -n 24576
 else
     fpath=(/usr/share/zsh-completions $fpath)
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
