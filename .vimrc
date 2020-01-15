@@ -172,9 +172,15 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('rust-lang/rust.vim', {'on_ft': 'rust'})
 
-    if has('nvim') && isdirectory("/usr/local/opt/llvm/lib/")
-        call dein#add('arakashic/chromatica.nvim')
-        let g:chromatica#libclang_path='/usr/local/opt/llvm/lib/libclang.dylib'
+    if has('nvim')
+        if isdirectory("/usr/local/opt/llvm/lib/")
+            call dein#add('arakashic/chromatica.nvim')
+            let g:chromatica#libclang_path='/usr/local/opt/llvm/lib/libclang.dylib'
+        endif
+        if isdirectory("/usr/lib/llvm-8/lib/")
+            call dein#add('arakashic/chromatica.nvim')
+            let g:chromatica#libclang_path='/usr/lib/llvm-8/lib/libclang.so.1'
+        endif
     endif
 
     call dein#end()
