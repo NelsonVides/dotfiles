@@ -209,6 +209,7 @@ set splitright
 set laststatus=2
 set noshowmode
 set noequalalways
+set colorcolumn=100
 colorscheme 256-jungle
 highlight SpellBad ctermbg=none ctermfg=none cterm=underline
 highlight Comment ctermfg=red
