@@ -76,7 +76,7 @@ if dein#load_state('~/.config/dein')
     call dein#add('ntpeters/vim-better-whitespace')
     call dein#add('itchyny/lightline.vim')
     let g:lightline = {
-                \ 'colorscheme': 'wombat',
+                \ 'colorscheme': 'ayu_light',
                 \ 'active': {
                 \   'left':  [ ['mode', 'paste' ],
                 \              ['gitbranch', 'readonly', 'filename', 'modified' ] ],
@@ -218,7 +218,7 @@ set laststatus=2
 set noshowmode
 set noequalalways
 set colorcolumn=101
-colorscheme 256-jungle
+colorscheme xcode-default
 highlight SpellBad ctermbg=none ctermfg=none cterm=underline
 highlight Comment ctermfg=red
 
