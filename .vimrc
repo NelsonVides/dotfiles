@@ -142,6 +142,7 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('LnL7/vim-nix')
 
+    " ERLANG
     call dein#add('vim-erlang/erlang-motions.vim', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-omnicomplete', {'on_ft' : 'erlang'})
     call dein#add('vim-erlang/vim-erlang-skeletons', {'on_ft' : 'erlang'})
@@ -151,6 +152,10 @@ if dein#load_state('~/.config/dein')
                 \ 'on_func': ['BuildMongooseTags', 'AsyncVimErlangTags'],
                 \ 'hook_post_source': 'let &tags .= "," . GetOtpTagsPath()'
                 \ })
+
+    " ELIXIR
+    call dein#add('elixir-editors/vim-elixir', {'on_ft' : 'elixir'})
+    call dein#add('mhinz/vim-mix-format', {'on_ft' : 'elixir'})
 
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
     augroup agdaMaps
