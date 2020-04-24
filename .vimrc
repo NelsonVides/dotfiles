@@ -44,6 +44,7 @@ if dein#load_state('~/.config/dein')
     let g:ale_linters_explicit = 1
     let g:ale_linters = {
                 \   'elixir': ['elixir-ls'],
+                \   'erlang': [],
                 \}
     let g:ale_fixers = {
                 \   'elixir': ['mix_format'],
