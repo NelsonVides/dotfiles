@@ -40,6 +40,26 @@ if dein#load_state('~/.config/dein')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
 
+    call dein#add('dense-analysis/ale')
+    let g:ale_linters_explicit = 1
+    let g:ale_linters = {
+                \   'elixir': ['elixir-ls'],
+                \}
+    let g:ale_fixers = {
+                \   'elixir': ['mix_format'],
+                \}
+    let g:ale_elixir_elixir_ls_release='~/repos/elixir-ls/release'
+    let g:ale_completion_enabled = 1
+    let g:ale_sign_error = '✘'
+    let g:ale_sign_warning = '⚠'
+    let g:ale_lint_on_enter = 0
+    let g:ale_lint_on_text_changed = 'never'
+    highlight ALEErrorSign ctermbg=NONE ctermfg=red
+    highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+    let g:ale_linters_explicit = 1
+    let g:ale_lint_on_save = 1
+    let g:ale_fix_on_save = 1
+
     call dein#add('tpope/vim-sensible')
     call dein#add('Asheq/close-buffers.vim', {'on_cmd': ['CloseOtherBuffers','CloseHiddenBuffers','CloseBufferMenu','CloseNamelessBuffers','CloseThisBuffer']})
     call dein#add('qpkorr/vim-bufkill')
