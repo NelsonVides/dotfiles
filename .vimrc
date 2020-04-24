@@ -58,6 +58,7 @@ if dein#load_state('~/.config/dein')
     " gc gets mapped to 'g - comment'
     " so gcc comments, gc to comment the target of a motion, etc
     call dein#add('tpope/vim-fugitive')
+    call dein#add('tpope/vim-endwise')
     " Simply a super git wrapper: https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 
     call dein#add('christoomey/vim-system-copy')
