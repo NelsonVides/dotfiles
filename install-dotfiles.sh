@@ -1,7 +1,6 @@
 # taken from https://github.com/samoshkin/tmux-config
 set -e # exits if a command fails
 set -u # errors if an variable is referenced before being set
-set -o pipefail
 
 is_app_installed() {
   type "$1" &>/dev/null
