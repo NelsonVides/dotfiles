@@ -178,6 +178,8 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('rust-lang/rust.vim', {'on_ft': 'rust'})
 
+    call dein#add('cespare/vim-toml', {'on_ft': 'toml'})
+
     if has('nvim')
         if isdirectory("/usr/local/opt/llvm/lib/")
             call dein#add('arakashic/chromatica.nvim')
