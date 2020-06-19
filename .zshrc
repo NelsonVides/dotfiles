@@ -99,6 +99,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 if [ -f ~/.brew ]; then
     source ~/.brew
+    DEFAULT_USER='nelsonvides'
     fpath=(/usr/local/share/zsh-completions $fpath)
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
@@ -108,5 +109,4 @@ else
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 fi
-DEFAULT_USER='nelsonvides'
 export ERL_AFLAGS="-kernel shell_history enabled"
