@@ -108,6 +108,7 @@ else
     fpath=(/usr/share/zsh-completions $fpath)
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+    export PATH=$PATH:/snap/bin
     xcape -e 'Control_L=Escape' -t 200
 fi
 export ERL_AFLAGS="-kernel shell_history enabled"
