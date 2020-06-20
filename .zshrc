@@ -111,4 +111,7 @@ else
     export PATH=$PATH:/snap/bin
     xcape -e 'Control_L=Escape' -t 200
 fi
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    export GPG_TTY=$(tty)
+fi
 export ERL_AFLAGS="-kernel shell_history enabled"
