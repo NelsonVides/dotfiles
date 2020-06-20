@@ -73,7 +73,7 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('flazz/vim-colorschemes')
-    call dein#add('ntpeters/vim-better-whitespace', {'on_cmd': 'EnableWhitespace'})
+    call dein#add('ntpeters/vim-better-whitespace')
     call dein#add('itchyny/lightline.vim')
     let g:lightline = {
                 \ 'colorscheme': 'wombat',
