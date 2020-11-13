@@ -115,3 +115,4 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     export GPG_TTY=$(tty)
 fi
 export ERL_AFLAGS="-kernel shell_history enabled"
+setopt share_history          # share command history data
