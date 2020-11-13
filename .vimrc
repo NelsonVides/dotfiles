@@ -61,6 +61,8 @@ if dein#load_state('~/.config/dein')
     call dein#add('tpope/vim-endwise')
     " Simply a super git wrapper: https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 
+    call dein#add('manu-mannattil/vim-longlines', {'on_ft':'markdown'})
+
     call dein#add('christoomey/vim-system-copy')
     let g:system_copy#copy_command='xclip -selection clipboard'
     let g:system_copy#paste_command='xclip -selection clipboard -o'
