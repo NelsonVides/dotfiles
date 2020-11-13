@@ -235,6 +235,7 @@ nnoremap <C-m> :NERDTreeFocus<CR>
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufNewFile,BufRead *.config set filetype=erlang
 autocmd BufNewFile,BufRead *.spec set filetype=erlang
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 nnoremap <leader>n :1tag!<CR>
 nnoremap <leader>f :TagbarToggle<CR>
 nnoremap <leader>c :TagbarOpenAutoClose<CR>
