@@ -40,6 +40,11 @@ if dein#load_state('~/.config/dein')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
 
+    call dein#add('neovim/nvim-lspconfig')
+    " call dein#add('neoclide/coc.nvim')
+    " call dein#add('clangd/coc-clangd')
+    " call dein#add('jackguo380/vim-lsp-cxx-highlight')
+
     call dein#add('tpope/vim-sensible')
     call dein#add('Asheq/close-buffers.vim', {'on_cmd': ['CloseOtherBuffers','CloseHiddenBuffers','CloseBufferMenu','CloseNamelessBuffers','CloseThisBuffer']})
     call dein#add('qpkorr/vim-bufkill')
@@ -143,7 +148,7 @@ if dein#load_state('~/.config/dein')
                     \ "})
     endif
 
-    call dein#add('LnL7/vim-nix')
+    " call dein#add('LnL7/vim-nix')
 
     " ERLANG
     call dein#add('vim-erlang/erlang-motions.vim', {'on_ft' : 'erlang'})
@@ -158,7 +163,7 @@ if dein#load_state('~/.config/dein')
 
     " ELIXIR
     call dein#add('elixir-editors/vim-elixir', {'on_ft' : 'elixir'})
-    call dein#add('mhinz/vim-mix-format', {'on_ft' : 'elixir'})
+    " call dein#add('mhinz/vim-mix-format', {'on_ft' : 'elixir'})
 
     call dein#add('derekelkins/agda-vim', {'on_ft': 'agda'})
     augroup agdaMaps
@@ -181,17 +186,6 @@ if dein#load_state('~/.config/dein')
     call dein#add('rust-lang/rust.vim', {'on_ft': 'rust'})
 
     call dein#add('cespare/vim-toml', {'on_ft': 'toml'})
-
-    if has('nvim')
-        if isdirectory("/usr/local/opt/llvm/lib/")
-            call dein#add('arakashic/chromatica.nvim')
-            let g:chromatica#libclang_path='/usr/local/opt/llvm/lib/libclang.dylib'
-        endif
-        if isdirectory("/usr/lib/llvm-8/lib/")
-            call dein#add('arakashic/chromatica.nvim')
-            let g:chromatica#libclang_path='/usr/lib/llvm-8/lib/libclang.so.1'
-        endif
-    endif
 
     call dein#end()
     call dein#save_state()
@@ -238,11 +232,22 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd BufNewFile,BufRead *.config set filetype=erlang
 autocmd BufNewFile,BufRead *.spec set filetype=erlang
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab
 nnoremap <leader>n :1tag!<CR>
 nnoremap <leader>f :TagbarToggle<CR>
 nnoremap <leader>c :TagbarOpenAutoClose<CR>
 set sessionoptions+=tabpages,globals
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MongooseIM section
