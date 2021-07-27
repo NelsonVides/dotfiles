@@ -96,11 +96,11 @@ if dein#load_state('~/.config/dein')
     " call dein#add('vim-erlang/vim-erlang-omnicomplete', {'on_ft' : 'erlang'})
     " call dein#add('vim-erlang/vim-erlang-skeletons', {'on_ft' : 'erlang'})
     " call dein#add('vim-erlang/vim-erlang-compiler', {'on_ft' : 'erlang'})
-    " call dein#add('NelsonVides/vim-erlang-tags', {
-                " \ 'on_ft' : 'erlang',
-                " \ 'on_func': ['BuildMongooseTags', 'AsyncVimErlangTags'],
-                " \ 'hook_post_source': 'let &tags .= "," . GetOtpTagsPath()'
-                " \ })
+    call dein#add('NelsonVides/vim-erlang-tags', {
+                \ 'on_ft' : 'erlang',
+                \ 'on_func': ['BuildMongooseTags', 'AsyncVimErlangTags'],
+                \ 'hook_post_source': 'let &tags .= "," . GetOtpTagsPath()'
+                \ })
 
     " ELIXIR
     " call dein#add('elixir-editors/vim-elixir', {'on_ft' : 'elixir'})
@@ -204,7 +204,7 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
