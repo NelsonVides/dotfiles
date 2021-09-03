@@ -62,7 +62,7 @@ if dein#load_state('~/.config/dein')
     call dein#add('tpope/vim-commentary')
     call dein#add('tpope/vim-fugitive')
     call dein#add('gcmt/taboo.vim')
-    call dein#add('ntpeters/vim-better-whitespace')
+    call dein#add('axelf4/vim-strip-trailing-whitespace')
 
     call dein#add('christoomey/vim-system-copy')
     let g:system_copy#copy_command='xclip -selection clipboard'
