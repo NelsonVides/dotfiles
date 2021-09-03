@@ -164,7 +164,7 @@ map('n', '<leader>7', '7gt')
 map('n', '<leader>8', '8gt')
 map('n', '<leader>9', '9gt')
 map('n', '<leader>0', ':tablast<CR>')
-map('n', '<leader>', ':Term<CR>')
+map('n', '<leader>t', ':Term<CR>')
 
 map('i', '<silent><C-k>', '<Cmd>Lspsaga signature_help<CR>')
 map('n', '<silent>K', ':Lspsaga hover_doc<CR>')
