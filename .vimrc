@@ -128,14 +128,10 @@ autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab
 nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>rm :!rm %
-nnoremap <leader>n :1tag!<CR>
 nnoremap <leader>f :TagbarToggle<CR>
 nnoremap <leader>c :TagbarOpenAutoClose<CR>
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
 
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-inoremap <silent><C-k> <Cmd>Lspsaga signature_help<CR>
-nnoremap <silent>gh <Cmd>Lspsaga lsp_finder<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -156,6 +152,7 @@ map('n', 'Q', ':q<CR>')
 map('n', '<Esc><Esc>', ':update<CR>')
 map('n', '<C-n>', ':NERDTreeToggle<CR>')
 map('n', '<C-m>', ':NERDTreeFocus<CR>')
+map('n', '<leader>n', ':1tag!<CR>')
 
 map('n', '<leader>1', '1gt')
 map('n', '<leader>2', '2gt')
@@ -168,6 +165,25 @@ map('n', '<leader>8', '8gt')
 map('n', '<leader>9', '9gt')
 map('n', '<leader>0', ':tablast<CR>')
 map('n', '<leader>', ':Term<CR>')
+
+map('i', '<silent><C-k>', '<Cmd>Lspsaga signature_help<CR>')
+map('n', '<silent>K', ':Lspsaga hover_doc<CR>')
+map('n', '<silent>gh', '<Cmd>Lspsaga lsp_finder<CR>')
+
+map('n', 'ff', '<cmd>Telescope find_files<CR>')
+map('n', 'fr', '<cmd>Telescope live_grep<CR>')
+map('n', 'fb', '<cmd>Telescope buffers<CR>')
+map('n', 'fh', '<cmd>Telescope help_tags<CR>')
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      n = {
+        ["q"] = actions.close
+      },
+    },
+  }
+}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
