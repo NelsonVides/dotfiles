@@ -100,7 +100,6 @@ export EDITOR='nvim'
 if [ -f ~/.brew ]; then
     source ~/.brew
     DEFAULT_USER='nelsonvides'
-    fpath=(/usr/local/share/zsh-completions $fpath)
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
     ulimit -n 24576
