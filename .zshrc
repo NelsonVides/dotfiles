@@ -110,7 +110,7 @@ else
     xcape -e 'Control_L=Escape' -t 200
 fi
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    export GPG_TTY=$(tty)
+    export GPG_TTY=$TTY
 fi
 export ERL_AFLAGS="-kernel shell_history enabled"
 setopt share_history          # share command history data
