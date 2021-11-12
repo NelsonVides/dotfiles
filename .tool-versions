@@ -1,0 +1,6 @@
+erlang 24.1.5
+rebar 3.17.0
+elixir 1.12.3-otp-24
+java openjdk-15
+neovim stable
+rust stable
