@@ -70,7 +70,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf tmux rebar docker docker-compose minikube kubectl helm gcloud)
+plugins=(git asdf tmux rebar docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,6 +113,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     export GPG_TTY=$TTY
 fi
 export ERL_AFLAGS="-kernel shell_history enabled"
+export ERL_LIBS=/home/videsnelson/repos/proper
 setopt share_history          # share command history data
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
