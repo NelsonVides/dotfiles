@@ -51,9 +51,13 @@ if dein#load_state('~/.config/dein')
     call dein#add('nvim-lua/popup.nvim')
     call dein#add('nvim-lua/plenary.nvim')
     call dein#add('nvim-telescope/telescope.nvim')
+    call dein#add('nvim-telescope/telescope-fzy-native.nvim')
+    call dein#add('nvim-telescope/telescope-frecency.nvim')
+    call dein#add('tami5/sqlite.lua')
     call dein#add('kyazdani42/nvim-web-devicons')
 
     call dein#add('windwp/nvim-autopairs')
+    call dein#add('editorconfig/editorconfig-vim')
 
     call dein#add('tpope/vim-sensible')
     call dein#add('tpope/vim-obsession')
@@ -62,7 +66,7 @@ if dein#load_state('~/.config/dein')
     call dein#add('tpope/vim-commentary')
     call dein#add('tpope/vim-fugitive')
     call dein#add('gcmt/taboo.vim')
-    call dein#add('axelf4/vim-strip-trailing-whitespace')
+    call dein#add('ntpeters/vim-better-whitespace')
 
     call dein#add('christoomey/vim-system-copy')
     let g:system_copy#copy_command='xclip -selection clipboard'
@@ -182,8 +186,22 @@ require('telescope').setup{
         ["q"] = actions.close
       },
     },
+  },
+  extensions = {
+    frecency = {
+      show_scores = true,
+      show_unindexed = true,
+      workspaces = {
+        ["conf"]    = "/home/videsnelson/.config",
+        ["data"]    = "/home/videsnelson/.local/share",
+        ["repos"]   = "/home/videsnelson/repos",
+        ["wiki"]    = "/home/videsnelson/wiki"
+      }
+    }
   }
 }
+require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('frecency')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -225,6 +243,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
+local path_to_elixirls = vim.fn.expand("~/repos/elixir-ls/release/language_server.sh")
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { "erlangls" }
@@ -237,6 +256,35 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+nvim_lsp.elixirls.setup({
+  cmd = {path_to_elixirls},
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    elixirLS = {
+      -- I choose to disable dialyzer for personal reasons, but
+      -- I would suggest you also disable it unless you are well
+      -- aquainted with dialzyer and know how to use it.
+      dialyzerEnabled = false,
+      -- I also choose to turn off the auto dep fetching feature.
+      -- It often get's into a weird state that requires deleting
+      -- the .elixir_ls directory and restarting your editor.
+      fetchDeps = false
+    }
+  }
+})
+-- nvim_lsp.ccls.setup {
+  -- init_options = {
+    -- compilationDatabaseDirectory = "build";
+    -- index = {
+      -- threads = 0;
+    -- };
+    -- clang = {
+      -- excludeArgs = { "-frounding-math"} ;
+    -- };
+  -- }
+-- }
 
 local saga = require('lspsaga')
 require('nvim-treesitter.configs').setup {
