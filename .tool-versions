@@ -1,9 +1,8 @@
-erlang 24.2
-rebar 3.17.0
-elixir 1.13.1-otp-24
-java openjdk-15
-neovim 0.6.0
-rust 1.57.0
+erlang 24.3.4
+rebar 3.18.0
+elixir 1.13.2-otp-24
+java openjdk-18
+neovim 0.7.0
 ripgrep 13.0.0
-fd 8.3.0
-delta 0.11.3
+fd 8.3.2
+delta 0.12.1
