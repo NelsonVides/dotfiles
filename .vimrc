@@ -139,6 +139,8 @@ nnoremap <leader>cp :let @" = expand("%:p")<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+nnoremap <C-W>o <ESC>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
 local nvim_lsp = require('lspconfig')
@@ -274,21 +276,10 @@ nvim_lsp.elixirls.setup({
     }
   }
 })
--- nvim_lsp.ccls.setup {
-  -- init_options = {
-    -- compilationDatabaseDirectory = "build";
-    -- index = {
-      -- threads = 0;
-    -- };
-    -- clang = {
-      -- excludeArgs = { "-frounding-math"} ;
-    -- };
-  -- }
--- }
 
 local saga = require('lspsaga')
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
   highlight = {
     enable = true,
     disable = {},
