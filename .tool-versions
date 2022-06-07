@@ -1,8 +1,9 @@
-erlang 24.3.4
-rebar 3.18.0
-elixir 1.13.2-otp-24
-java openjdk-18
 neovim 0.7.0
+tmux 3.2a
+erlang 25.0
+java openjdk-18
+delta 0.13.0
 ripgrep 13.0.0
 fd 8.3.2
-delta 0.12.1
+elixir 1.13.4-otp-25
+rebar 3.18.0
