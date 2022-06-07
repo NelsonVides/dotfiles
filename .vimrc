@@ -245,20 +245,25 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
-local path_to_elixirls = vim.fn.expand("~/repos/elixir-ls/release/language_server.sh")
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "erlangls" }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
+local path_to_erlangls = vim.fn.expand("~/repos/erlang_ls/_build/release/bin/erlang_ls")
+nvim_lsp.erlangls.setup({
+  cmd = {path_to_erlangls},
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
       debounce_text_changes = 150,
-    }
   }
-end
+})
 
+local path_to_pythonls = vim.fn.expand("/home/videsnelson/.local/bin/pylsp")
+nvim_lsp.pylsp.setup{
+  cmd = {path_to_pythonls},
+  on_attach=on_attach
+}
+
+local path_to_elixirls = vim.fn.expand("~/repos/elixir-ls/release/language_server.sh")
 nvim_lsp.elixirls.setup({
   cmd = {path_to_elixirls},
   capabilities = capabilities,
