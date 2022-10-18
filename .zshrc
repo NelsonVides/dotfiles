@@ -113,7 +113,7 @@ fi
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     export GPG_TTY=$TTY
 fi
-export ERL_AFLAGS="-kernel shell_history enabled"
+export ERL_AFLAGS="+pc unicode -kernel shell_history enabled -enable-feature all"
 export ERL_LIBS=/home/videsnelson/repos/proper
 setopt share_history          # share command history data
 
