@@ -129,6 +129,7 @@ autocmd BufNewFile,BufRead *.config set filetype=erlang
 autocmd BufNewFile,BufRead *.spec set filetype=erlang
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType elixir setlocal commentstring=#\ %s
 nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>rm :!rm %
