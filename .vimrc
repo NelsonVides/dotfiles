@@ -25,7 +25,6 @@ endfunction
 function! BuildMongooseTags()
     let arg = "--include include src test big_tests _build "
           \ . "--ignore _build/mim1 _build/mim2 _build/mim3 _build/fed1 _build/reg1 _build/prod "
-          \ .           "big_tests/_build/ct_report "
           \ .           "big_tests/deps/ "
           \ .           "_build/default/lib/mongooseim "
           \ .           "_build/test/lib/mongooseim "
@@ -46,14 +45,14 @@ if dein#load_state('~/.config/dein')
 
     call dein#add('neovim/nvim-lspconfig')
     call dein#add('glepnir/lspsaga.nvim')
-    call dein#add('nvim-lua/completion-nvim')
-    call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
-    call dein#add('nvim-lua/popup.nvim')
-    call dein#add('nvim-lua/plenary.nvim')
-    call dein#add('nvim-telescope/telescope.nvim')
-    call dein#add('nvim-telescope/telescope-fzy-native.nvim')
-    call dein#add('nvim-telescope/telescope-frecency.nvim')
-    call dein#add('tami5/sqlite.lua')
+    " call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
+    " call dein#add('nvim-lua/completion-nvim')
+    " call dein#add('nvim-lua/popup.nvim')
+    " call dein#add('nvim-lua/plenary.nvim')
+    " call dein#add('nvim-telescope/telescope.nvim')
+    " call dein#add('nvim-telescope/telescope-fzy-native.nvim')
+    " call dein#add('nvim-telescope/telescope-frecency.nvim')
+    " call dein#add('tami5/sqlite.lua')
     call dein#add('kyazdani42/nvim-web-devicons')
 
     call dein#add('windwp/nvim-autopairs')
@@ -181,35 +180,35 @@ map('n', 'ff', '<cmd>Telescope find_files<CR>')
 map('n', 'fr', '<cmd>Telescope live_grep<CR>')
 map('n', 'fb', '<cmd>Telescope buffers<CR>')
 map('n', 'fh', '<cmd>Telescope help_tags<CR>')
-local actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    mappings = {
-      n = {
-        ["q"] = actions.close
-      },
-    },
-  },
-  extensions = {
-    frecency = {
-      show_scores = true,
-      show_unindexed = true,
-      workspaces = {
-        ["conf"]    = "/home/videsnelson/.config",
-        ["data"]    = "/home/videsnelson/.local/share",
-        ["repos"]   = "/home/videsnelson/repos",
-        ["wiki"]    = "/home/videsnelson/wiki"
-      }
-    }
-  }
-}
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('frecency')
+-- local actions = require('telescope.actions')
+-- require('telescope').setup{
+--   defaults = {
+--     mappings = {
+--       n = {
+--         ["q"] = actions.close
+--       },
+--     },
+--   },
+--   extensions = {
+--     frecency = {
+--       show_scores = true,
+--       show_unindexed = true,
+--       workspaces = {
+--         ["conf"]    = "/home/videsnelson/.config",
+--         ["data"]    = "/home/videsnelson/.local/share",
+--         ["repos"]   = "/home/videsnelson/repos",
+--         ["wiki"]    = "/home/videsnelson/wiki"
+--       }
+--     }
+--   }
+-- }
+-- require('telescope').load_extension('fzy_native')
+-- require('telescope').load_extension('frecency')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  require('completion').on_attach(client, bufnr)
+--   require('completion').on_attach(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   --Enable completion triggered by <c-x><c-o>
@@ -237,14 +236,14 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
-}
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.resolveSupport = {
+--   properties = {
+--     'documentation',
+--     'detail',
+--     'additionalTextEdits',
+--   }
+-- }
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -284,17 +283,17 @@ nvim_lsp.elixirls.setup({
 })
 
 local saga = require('lspsaga')
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-    disable = {},
-  },
-  indent = {
-    enable = false,
-    disable = {},
-  },
-}
+-- require('nvim-treesitter.configs').setup {
+--   ensure_installed = "all",
+--   highlight = {
+--     enable = true,
+--     disable = {},
+--   },
+--   indent = {
+--     enable = false,
+--     disable = {},
+--   },
+-- }
 
 require'nvim-web-devicons'.setup {
   override = {},
