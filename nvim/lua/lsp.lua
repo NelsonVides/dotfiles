@@ -33,7 +33,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- capabilities.textDocument.completion.completionItem.resolveSupport = {
 --   properties = {
@@ -48,15 +49,15 @@ local path_to_erlangls = vim.fn.expand("~/repos/erlang_ls/_build/release/bin/erl
 nvim_lsp.erlangls.setup({
   cmd = {path_to_erlangls},
   on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = {client_capabilities, cmp_capabilities}
 })
 
 -- Elixir
 local path_to_elixirls = vim.fn.expand("~/repos/elixir-ls/release/language_server.sh")
 nvim_lsp.elixirls.setup({
   cmd = {path_to_elixirls},
-  capabilities = capabilities,
   on_attach = on_attach,
+  capabilities = {client_capabilities, cmp_capabilities},
   settings = {
     elixirLS = {
       dialyzerEnabled = false,
@@ -69,11 +70,13 @@ nvim_lsp.elixirls.setup({
 local path_to_pythonls = vim.fn.expand("/home/videsnelson/.local/bin/pylsp")
 nvim_lsp.pylsp.setup{
   cmd = {path_to_pythonls},
-  on_attach=on_attach
+  on_attach=on_attach,
+  capabilities = {client_capabilities, cmp_capabilities}
 }
 
 local path_to_clangd = vim.fn.expand("/usr/bin/clangd")
-nvim_lsp.clangd.setup{
+nvim_lsp.clangd.setup({
   cmd = {path_to_clangd},
-  on_attach=on_attach
-}
+  on_attach=on_attach,
+  capabilities = {client_capabilities, cmp_capabilities}
+})

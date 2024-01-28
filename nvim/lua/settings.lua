@@ -97,7 +97,9 @@ vim.opt.equalalways = false
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.foldenable = true -- Enable folding
 vim.opt.foldlevelstart = 99 -- Open most folds by default
-vim.opt.foldmethod = 'indent' -- Fold based on indent level
+vim.opt.foldmethod = "expr" -- Fold based on indent level
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 vim.opt.foldnestmax = 10 -- 10 nested fold max
 vim.opt.gdefault = true -- Search everything, not just the current line
 vim.opt.grepprg = "rg --vimgrep"
@@ -137,13 +139,3 @@ highlight EndOfBuffer guibg=none ctermbg=none gui=none
 " SignColumn
 highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
 ]]
-
-vim.g.coq_settings = {
-    auto_start = true,
-    keymap = {
-        recommended = false,
-        jump_to_mark = '<c-b>',
-        bigger_preview = '<c-z>',
-        pre_select = true,
-    },
-}
