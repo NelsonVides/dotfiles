@@ -65,7 +65,7 @@ return {
                     { name = "catppuccin-latte (light)", colorscheme = "catppuccin-latte"},
                     { name = "kanagawa-lotus (light)", colorscheme = "kanagawa-lotus"},
                 }, -- Your list of installed colorschemes
-                themeConfigFile = "lua/theme.lua", -- Described below
+                themeConfigFile = "~/dotfiles/nvim/lua/theme.lua", -- Described below
                 livePreview = true -- Apply theme while browsing. Default to true.
             }
         end
