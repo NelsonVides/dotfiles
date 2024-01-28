@@ -137,3 +137,13 @@ highlight EndOfBuffer guibg=none ctermbg=none gui=none
 " SignColumn
 highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
 ]]
+
+vim.g.coq_settings = {
+    auto_start = true,
+    keymap = {
+        recommended = false,
+        jump_to_mark = '<c-b>',
+        bigger_preview = '<c-z>',
+        pre_select = true,
+    },
+}

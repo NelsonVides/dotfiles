@@ -308,6 +308,9 @@ return {
         end
     },
 
+    { 'ms-jpq/coq_nvim', config = function() require('coq') end },
+    { 'ms-jpq/coq.artifacts' },
+
     { 'nvim-telescope/telescope-fzy-native.nvim' },
     { 'nvim-telescope/telescope.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },

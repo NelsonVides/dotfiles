@@ -1,5 +1,7 @@
 {
   "catppuccin": { "branch": "main", "commit": "afab7ec2a79c7127627dede79c0018b6e45663d0" },
+  "coq.artifacts": { "branch": "artifacts", "commit": "e7202d1a1b5cfa91446d5b7a035f915934e4d713" },
+  "coq_nvim": { "branch": "coq", "commit": "792a5547052561d1089d523d68cad5859e9c78d9" },
   "dashboard-nvim": { "branch": "master", "commit": "63df28409d940f9cac0a925df09d3dc369db9841" },
   "dbsession.nvim": { "branch": "main", "commit": "cdf680b9ed91c735418706b1125df91e5ba39251" },
   "diffview.nvim": { "branch": "main", "commit": "3dc498c9777fe79156f3d32dddd483b8b3dbd95f" },
