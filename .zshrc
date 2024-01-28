@@ -70,7 +70,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf tmux rebar docker docker-compose)
+plugins=(git asdf tmux rebar docker docker-compose ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,8 +107,7 @@ if [ -f ~/.brew ]; then
 else
     fpath=(/usr/share/zsh-completions $fpath)
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    export PATH=$PATH:/snap/bin
-    xcape -e 'Control_L=Escape' -t 200
+    export XDG_RUNTIME_DIR=/run/user/$UID
 fi
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     export GPG_TTY=$TTY
