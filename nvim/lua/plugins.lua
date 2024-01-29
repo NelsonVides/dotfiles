@@ -93,7 +93,6 @@ return {
                 sections = {
                     lualine_a = {'mode'},
                     lualine_b = {'branch', 'diff', 'diagnostics'},
-                    -- lualine_c = {'filename', {require('auto-session.lib').current_session_name}},
                     lualine_c = {'filename'},
                     lualine_x = {'encoding', 'fileformat', 'filetype'},
                     lualine_y = {'progress'},
@@ -178,7 +177,7 @@ return {
             'nvim-lua/plenary.nvim',         -- required
             'sindrets/diffview.nvim',        -- optional - Diff integration
             -- Only one of these is needed, not both.
-            -- 'nvim-telescope/telescope.nvim', -- optional
+            'nvim-telescope/telescope.nvim', -- optional
             -- 'ibhagwan/fzf-lua',              -- optional
         },
         keys = {
@@ -208,21 +207,6 @@ return {
             auto_save_on_exit = true
         }
     },
-
-    -- { 'rmagatti/auto-session',
-    --     config = function()
-    --         require('auto-session').setup {
-    --             log_level = "error",
-    --             auto_session_enabled = false,
-    --             auto_session_enabled_last_session = true,
-    --             auto_save_enabled = true,
-    --             auto_restore_enabled = false,
-    --             auto_session_suppress_dirs = { "~/", "/"},
-    --             auto_session_use_git_branch = true
-    --         }
-    --     end,
-    --     cmd = "SessionRestore",
-    -- },
 
     { 'nvim-tree/nvim-web-devicons',
         config = function()
