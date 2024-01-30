@@ -36,7 +36,8 @@ return {
         end,
     },
 
-    { 'zaldih/themery.nvim',
+    { 'zaldih/themery.nvim', lazy = true,
+        cmd = { 'Themery' },
         priority = 1000,
         config = function()
             require('themery').setup {
@@ -70,14 +71,14 @@ return {
             }
         end
     },
-    { 'folke/tokyonight.nvim', name = "tokyonight" },
-    { 'tiagovla/tokyodark.nvim', name = "tokyodark" },
-    { 'bluz71/vim-nightfly-colors', name = "nightfly" },
-    { 'catppuccin/nvim', name = "catppuccin" },
-    { 'rebelot/kanagawa.nvim', name = "kanagawa" },
-    { 'ellisonleao/gruvbox.nvim', name = "gruvbox" },
-    { 'Mofiqul/vscode.nvim', name = "vscode" },
-    { 'Mofiqul/dracula.nvim', name = "dracula" },
+    { 'folke/tokyonight.nvim', name = "tokyonight", lazy = true },
+    { 'tiagovla/tokyodark.nvim', name = "tokyodark", lazy = true },
+    { 'bluz71/vim-nightfly-colors', name = "nightfly", lazy = true },
+    { 'catppuccin/nvim', name = "catppuccin", lazy = true },
+    { 'rebelot/kanagawa.nvim', name = "kanagawa", lazy = true },
+    { 'ellisonleao/gruvbox.nvim', name = "gruvbox", lazy = true },
+    { 'Mofiqul/vscode.nvim', name = "vscode", lazy = true },
+    { 'Mofiqul/dracula.nvim', name = "dracula", lazy = true },
 
     { 'nvim-lualine/lualine.nvim',
         config = function ()
@@ -98,24 +99,6 @@ return {
                     lualine_y = {'progress'},
                     lualine_z = {'location'}
                 },
-                -- tabline = {
-                --     lualine_a = {
-                --         {
-                --             'buffers',
-                --             mode = 2,
-                --             symbols = {
-                --                 modified = ' *',     -- Text to show when the buffer is modified
-                --                 alternate_file = '', -- Text to show to identify the alternate file
-                --                 directory =  '',     -- Text to show when the buffer is a directory
-                --             },
-                --         }
-                --     },
-                --     lualine_b = {},
-                --     lualine_c = {},
-                --     lualine_x = {},
-                --     lualine_y = {},
-                --     lualine_z = {}
-                -- },
             }
         end
     },
@@ -165,14 +148,14 @@ return {
 
     { 'nvim-lua/plenary.nvim' },
 
-    { 'tpope/vim-fugitive',
+    { 'tpope/vim-fugitive', lazy = true,
+        cmd = { 'Git' },
         keys = {
             { "<leader>b", "<cmd>:Git blame<cr>" },
         },
     },
-    { 'sindrets/diffview.nvim' },
-    { 'NeogitOrg/neogit',
-        lazy = false,
+    { 'sindrets/diffview.nvim', lazy = true },
+    { 'NeogitOrg/neogit', lazy = true,
         dependencies = {
             'nvim-lua/plenary.nvim',         -- required
             'sindrets/diffview.nvim',        -- optional - Diff integration
@@ -187,7 +170,7 @@ return {
         config = true,
     },
 
-    { 'jiaoshijie/undotree',
+    { 'jiaoshijie/undotree', lazy = true,
         dependencies = 'nvim-lua/plenary.nvim',
         config = true,
         keys = {
@@ -201,7 +184,7 @@ return {
         end
     },
 
-    { 'nvimdev/dbsession.nvim',
+    { 'nvimdev/dbsession.nvim', lazy = true,
         cmd = { 'SessionSave', 'SessionDelete', 'SessionLoad'},
         opts = {
             auto_save_on_exit = true
@@ -216,7 +199,8 @@ return {
         end
     },
 
-    { 'nvim-tree/nvim-tree.lua',
+    { 'nvim-tree/nvim-tree.lua', lazy = true,
+        cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             local function my_on_attach(bufnr)
@@ -259,7 +243,7 @@ return {
         end
     },
 
-    { 'kylechui/nvim-surround',
+    { 'kylechui/nvim-surround', lazy = true,
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
         config = function()
@@ -267,7 +251,7 @@ return {
         end
     },
 
-    { 'yorickpeterse/nvim-window',
+    { 'yorickpeterse/nvim-window', lazy = true,
         keys = {
             { "<leader>w", "<cmd>lua require('nvim-window').pick()<cr>" },
         },
@@ -282,13 +266,18 @@ return {
         end
     },
 
-    { 'akinsho/toggleterm.nvim',
+    { 'akinsho/toggleterm.nvim', lazy = true,
+        cmd = { 'ToggleTerm' },
+        keys = {
+            { "<leader>t", "<cmd>ToggleTerm<cr>" },
+        },
         config = function()
             require('toggleterm').setup {
                 open_mapping = [[<leader>t]],
                 insert_mappings = false,
-                direction = 'float'
+                direction = 'horizontal'
             }
+            vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-n>', {noremap = true, silent = true})
         end
     },
 
@@ -362,8 +351,7 @@ return {
         end
     },
 
-    { 'p00f/clangd_extensions.nvim',
-        lazy = true,
+    { 'p00f/clangd_extensions.nvim', lazy = true,
         config = function() end,
         opts = {
             inlay_hints = {
@@ -453,7 +441,7 @@ return {
     },
 
     { 'andymass/vim-matchup' },
-    { 'manu-mannattil/vim-longlines',
+    { 'manu-mannattil/vim-longlines', lazy = true,
         ft = "markdown",
         cmd = "LongLines",
     },
