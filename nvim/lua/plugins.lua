@@ -164,10 +164,17 @@ return {
             -- 'ibhagwan/fzf-lua',              -- optional
         },
         keys = {
-            { "<leader>g", "<cmd>:Neogit kind=floating<cr>" },
+            { "<leader>g", "<cmd>:Neogit<cr>" },
             { "<leader>d", "<cmd>:Neogit diff<cr>" }
         },
-        config = true,
+        config = function()
+            require('neogit').setup {
+                graph_style = "unicode",
+                telescope_sorter = function()
+                    return require("telescope").extensions.fzy.native_fzy_sorter()
+                end,
+            }
+        end
     },
 
     { 'jiaoshijie/undotree', lazy = true,
