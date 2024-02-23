@@ -1,0 +1,17 @@
+ulimit -n 24576
+export DEFAULT_USER="nelsonvides"
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+
+export PATH="/usr/local/sbin:/usr/local/opt/curl/bin:/usr/local/opt/openssl/bin:$PATH"
+
+export OPENSSL_ROOT_DIR="/usr/local/opt/openssl@3.1"
+export OPENSSL_LIB_DIR="/usr/local/opt/openssl/lib"
+export OPENSSL_INCLUDE_DIR="/usr/local/opt/openssl/include"
+export UNIXODBC_LIB_DIR="/usr/local/opt/unixodbc/lib"
+export UNIXODBC_INCLUDE_DIR="/usr/local/opt/unixodbc/include"
+
+# export CC="/usr/bin/gcc -I%UNIXODBC_INCLUDE_DIR"
+# export CFLAGS="-I$OPENSSL_INCLUDE_DIR $CFLAGS"
+# export CFLAGS="-I/usr/local/opt/openssl/include -O2 -g $CFLAGS"
+export LDFLAGS="-L$OPENSSL_LIB_DIR -L$UNIXODBC_LIB_DIR"

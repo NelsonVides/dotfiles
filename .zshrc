@@ -100,10 +100,6 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 if [ -f ~/.brew ]; then
     source ~/.brew
-    DEFAULT_USER='nelsonvides'
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-    ulimit -n 24576
 else
     fpath=(/usr/share/zsh-completions $fpath)
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
