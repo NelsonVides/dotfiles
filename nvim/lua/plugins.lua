@@ -94,7 +94,7 @@ return {
                 sections = {
                     lualine_a = {'mode'},
                     lualine_b = {'branch', 'diff', 'diagnostics'},
-                    lualine_c = {'filename'},
+                    lualine_c = {{require('auto-session.lib').current_session_name}, 'filename'},
                     lualine_x = {'encoding', 'fileformat', 'filetype'},
                     lualine_y = {'progress'},
                     lualine_z = {'location'}
@@ -131,7 +131,7 @@ return {
                         {
                             desc = 'Restore Session',
                             group = 'Number',
-                            action = 'SessionLoad',
+                            action = 'SessionRestore',
                             key = 's',
                         },
                     },
@@ -191,11 +191,24 @@ return {
         end
     },
 
-    { 'nvimdev/dbsession.nvim', lazy = true,
-        cmd = { 'SessionSave', 'SessionDelete', 'SessionLoad'},
-        opts = {
-            auto_save_on_exit = true
-        }
+    { 'rmagatti/auto-session', lazy = true,
+        cmd = { 'SessionSave', 'SessionDelete', 'SessionRestore'},
+        config = function()
+            require("auto-session").setup {
+                auto_session_use_git_branch = true,
+                auto_session_enable_last_session = false,
+                auto_restore_enabled = false,
+                auto_session_enabled = true,
+                log_level = "error"
+            }
+        end
+    },
+
+    { 'rmagatti/session-lens', lazy = true,
+    requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+        config = function()
+            require('session-lens').setup({--[[your custom config--]]})
+        end
     },
 
     { 'nvim-tree/nvim-web-devicons',
@@ -206,7 +219,7 @@ return {
         end
     },
 
-    { 'nvim-tree/nvim-tree.lua', lazy = true,
+    { 'nvim-tree/nvim-tree.lua',
         cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
