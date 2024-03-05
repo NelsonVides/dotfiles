@@ -30,7 +30,8 @@ return {
                     disable = {"lua", "vimdoc"}
                 },
                 matchup = {
-                    enable = false
+                    enable = false,
+                    disable = {"lua", "vimdoc", "vim"}
                 },
             }
         end,
