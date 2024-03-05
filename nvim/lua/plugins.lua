@@ -242,6 +242,9 @@ return {
                 on_attach = my_on_attach,
                 view = {
                     float = {enable = true}
+                },
+                filters = {
+                    git_ignored = false
                 }
             }
         end,
