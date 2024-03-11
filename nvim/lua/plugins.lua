@@ -8,7 +8,8 @@ return {
             require('nvim-treesitter.configs').setup {
                 ensured_installed = {
                     "erlang", "elixir", "c", "cpp", "rust",
-                    "lua", "sql", "bash", "make", "cmake", "diff", "dockerfile",
+                    "lua", "luadoc", "vimdoc", "norg",
+                    "sql", "bash", "make", "cmake", "diff", "dockerfile",
                     "git_config", "git_rebase", "gitcommit", "gitignore", "ssh_config",
                     "html", "xml", "json", "latex", "markdown", "toml", "yaml", "regex"
                 },
@@ -23,15 +24,15 @@ return {
                 },
                 highlight = {
                     enable = true,
-                    disable = {"lua", "vimdoc"}
+                    disable = {}
                 },
                 indent = {
                     enable = true, -- this is an experimental feature
-                    disable = {"lua", "vimdoc"}
+                    disable = {}
                 },
                 matchup = {
                     enable = false,
-                    disable = {"lua", "vimdoc", "vim"}
+                    disable = {}
                 },
             }
         end,
