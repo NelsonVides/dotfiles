@@ -213,6 +213,35 @@ return {
         end
     },
 
+    { 'nvim-neorg/neorg', lazy = false, -- specify lazy = false because some lazy.nvim distributions set lazy = true by default
+        build = ":Neorg sync-parsers",
+        -- tag = "*",
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require("neorg").setup {
+                load = {
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                    ["core.completion"] = {
+                        config = {
+                            engine = "nvim-cmp"
+                        }
+                    },
+                    -- ["core.integration.nvim-cmp"] = {},
+                    -- ["core.integration.treesitter"] = {},
+                    -- ["core.completion"] = {},
+                    ["core.dirman"] = { -- Manages Neorg workspaces
+                        config = {
+                            workspaces = {
+                                notes = "~/notes",
+                            },
+                        },
+                    },
+                },
+            }
+        end,
+    },
+
     { 'nvim-tree/nvim-web-devicons',
         config = function()
             require('nvim-web-devicons').setup {
@@ -342,10 +371,11 @@ return {
                     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 }),
                 sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                    { name = 'luasnip' }, -- For luasnip users.
-                }, {
-                    { name = 'buffer' },
+                        { name = 'nvim_lsp' },
+                        { name = 'neorg' },
+                        { name = 'luasnip' }, -- For luasnip users.
+                    }, {
+                        { name = 'buffer' },
                 })
             })
             -- Set configuration for specific filetype.
