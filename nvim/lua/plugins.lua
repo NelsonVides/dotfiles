@@ -349,7 +349,10 @@ return {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
+    { 'hrsh7th/cmp-calc' },
     { 'hrsh7th/cmp-cmdline' },
+    { 'chrisgrieser/cmp_yanky' },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'lukas-reineke/cmp-under-comparator' },
     { 'L3MON4D3/LuaSnip' },
     { 'hrsh7th/nvim-cmp',
@@ -387,10 +390,13 @@ return {
                         { name = 'neorg' },
                         { name = 'luasnip' }, -- For luasnip users.
                         { name = 'path', option = { trailing_slash = true } },
+                        { name = 'calc' },
+                        { name = 'nvim_lsp_signature_help' },
+                        { name = 'cmp_yanky' }
                     },
                     {
                         { name = 'buffer' },
-                })
+                    })
             })
             -- Set configuration for specific filetype.
             cmp.setup.filetype('gitcommit', {
@@ -418,6 +424,14 @@ return {
                 })
             })
         end
+    },
+
+    { 'gbprod/yanky.nvim', lazy = true,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
     },
 
     { 'p00f/clangd_extensions.nvim', lazy = true,
