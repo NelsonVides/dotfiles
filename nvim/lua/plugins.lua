@@ -245,7 +245,7 @@ return {
     { 'nvim-tree/nvim-web-devicons',
         config = function()
             require('nvim-web-devicons').setup {
-              default = true
+                default = true
             }
         end
     },
@@ -274,7 +274,8 @@ return {
                     float = {enable = true}
                 },
                 filters = {
-                    git_ignored = false
+                    git_ignored = false,
+                    custom = {'*.beam'}
                 }
             }
         end,
@@ -370,11 +371,14 @@ return {
                     ['<C-e>'] = cmp.mapping.abort(),
                     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 }),
-                sources = cmp.config.sources({
+                sources = cmp.config.sources(
+                    {
                         { name = 'nvim_lsp' },
                         { name = 'neorg' },
                         { name = 'luasnip' }, -- For luasnip users.
-                    }, {
+                        { name = 'path', option = { trailing_slash = true } },
+                    },
+                    {
                         { name = 'buffer' },
                 })
             })

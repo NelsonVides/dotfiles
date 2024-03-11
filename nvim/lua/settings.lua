@@ -70,6 +70,7 @@ vim.opt.wildignore:append({'go/bin-vagrant'})                               -- G
 vim.opt.wildignore:append({'*.pyc'})                                        -- Python byte code
 vim.opt.wildignore:append({'*.orig'})                                       -- Merge resolution files
 vim.opt.wildignore:append({'node_modules'})                                 -- Node.js modules
+vim.opt.wildignore:append({'*.beam'})                                       -- BEAM byte code
 
 -- -- Time out on key codes but not mappings. Basically this makes terminal Vim
 -- -- behave in a sane way.
