@@ -221,7 +221,16 @@ return {
             require("neorg").setup {
                 load = {
                     ["core.defaults"] = {}, -- Loads default behaviour
-                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                    ["core.concealer"] = {
+                        config = {
+                            icons = {
+                                todo = {
+                                    done = { icon = "✓⃝" },
+                                    pending = { icon = "⏱︎" },
+                                },
+                            },
+                        },
+                    }, -- Adds pretty icons to your documents
                     ["core.completion"] = {
                         config = {
                             engine = "nvim-cmp"
@@ -235,6 +244,7 @@ return {
                             workspaces = {
                                 notes = "~/notes",
                             },
+                            default_workspace = "notes"
                         },
                     },
                 },
