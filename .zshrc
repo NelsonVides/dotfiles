@@ -104,6 +104,8 @@ else
     fpath=(/usr/share/zsh-completions $fpath)
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     export XDG_RUNTIME_DIR=/run/user/$UID
+    export BROWSER="xdg-open"
+    export PATH="/home/videsnelson/dotfiles/:$PATH"
 fi
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     export GPG_TTY=$TTY
