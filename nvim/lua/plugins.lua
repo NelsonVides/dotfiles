@@ -8,7 +8,7 @@ return {
             require('nvim-treesitter.configs').setup {
                 ensured_installed = {
                     "erlang", "elixir", "c", "cpp", "rust",
-                    "lua", "luadoc", "vimdoc", "norg",
+                    "lua", "luadoc", "vimdoc", "norg", "graphql",
                     "sql", "bash", "make", "cmake", "diff", "dockerfile",
                     "git_config", "git_rebase", "gitcommit", "gitignore", "ssh_config",
                     "html", "xml", "json", "latex", "markdown", "toml", "yaml", "regex"
