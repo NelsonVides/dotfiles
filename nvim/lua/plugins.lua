@@ -239,6 +239,13 @@ return {
                     -- ["core.integration.nvim-cmp"] = {},
                     -- ["core.integration.treesitter"] = {},
                     -- ["core.completion"] = {},
+                    ["core.keybinds"] = {
+                        config = {
+                            hook = function(keybinds)
+                                keybinds.map("norg", "n", "<leader>c", "<cmd>Neorg toggle-concealer<CR>")
+                            end
+                        }
+                    },
                     ["core.dirman"] = { -- Manages Neorg workspaces
                         config = {
                             workspaces = {
