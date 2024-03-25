@@ -98,8 +98,8 @@ return {
                     lualine_b = {'branch', 'diff', 'diagnostics'},
                     lualine_c = {{require('auto-session.lib').current_session_name}, 'filename'},
                     lualine_x = {'encoding', 'fileformat', 'filetype'},
-                    lualine_y = {'progress'},
-                    lualine_z = {'location'}
+                    lualine_y = {'progress', function() return vim.fn.wordcount().words end},
+                    lualine_z = {'location'},
                 },
             }
         end
