@@ -213,12 +213,17 @@ return {
         end
     },
 
+    { 'vhyrro/luarocks.nvim',
+        priority = 1000,
+        opts = {
+            luarocks_build_args = { "--with-lua-include=/home/videsnelson/.asdf/installs/luajit/2.0.5--2.4.4/include/" }, -- extra options to pass to luarocks's configuration script
+        }
+    },
     { 'nvim-neorg/neorg', lazy = false, -- specify lazy = false because some lazy.nvim distributions set lazy = true by default
-        build = ":Neorg sync-parsers",
         -- tag = "*",
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 'luarocks.nvim' },
         config = function()
-            require("neorg").setup {
+            require('neorg').setup {
                 load = {
                     ["core.defaults"] = {}, -- Loads default behaviour
                     ["core.concealer"] = {
