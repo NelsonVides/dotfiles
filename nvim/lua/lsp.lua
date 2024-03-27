@@ -79,3 +79,23 @@ nvim_lsp.clangd.setup({
   on_attach=on_attach,
   capabilities = {client_capabilities, cmp_capabilities}
 })
+
+local path_to_ltex = vim.fn.expand("/home/videsnelson/.cache/ltex-ls-16.0.0/bin/ltex-ls")
+nvim_lsp.ltex.setup({
+    cmd = {path_to_ltex},
+    filetypes = { 'gitcommit', 'markdown', 'org', 'norg', 'tex', 'html', 'xhtml' },
+    flags = { debounce_text_changes = 300 },
+    settings = {
+        ltex = {
+            language = "en-GB",
+            disabledRules = {
+                ["en-GB"] = {
+                    "MORFOLOGIK_RULE_EN_GB",
+                    "OXFORD_SPELLING_Z_NOT_S",
+                    "WHITESPACE_RULE"
+                },
+            },
+        }
+    },
+    on_attach = on_attach,
+})
