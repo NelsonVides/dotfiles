@@ -44,10 +44,9 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 --   }
 -- }
 
--- Erlang
-local path_to_erlangls = vim.fn.expand("~/repos/erlang_ls/_build/release/bin/erlang_ls")
-nvim_lsp.erlangls.setup({
-  cmd = {path_to_erlangls},
+local path_to_elp = vim.fn.expand("~/repos/erlang-language-platform/releases/elp")
+nvim_lsp.elp.setup({
+  cmd = {path_to_elp, 'server'},
   on_attach = on_attach,
   capabilities = {client_capabilities, cmp_capabilities}
 })
