@@ -392,10 +392,11 @@ return {
                 },
                 sorting = {
                     comparators = {
-                        cmp.config.compare.offset,
-                        cmp.config.compare.exact,
-                        cmp.config.compare.score,
+                        function(...) return require('cmp_buffer'):compare_locality(...) end,
                         cmp.config.compare.recently_used,
+                        cmp.config.compare.exact,
+                        cmp.config.compare.offset,
+                        cmp.config.compare.score,
                         require("clangd_extensions.cmp_scores"),
                         cmp.config.compare.kind,
                         cmp.config.compare.sort_text,
@@ -415,13 +416,13 @@ return {
                     {
                         { name = 'nvim_lsp' },
                         { name = 'nvim_lsp_signature_help' },
+                        { name = 'buffer' },
                         { name = 'neorg' },
                         { name = 'luasnip' },
                         { name = 'calc' },
                         { name = 'cmp_yanky' }
                     },
                     {
-                        { name = 'buffer' },
                         { name = 'path', option = {
                             trailing_slash = true,
                             label_trailing_slash = true
