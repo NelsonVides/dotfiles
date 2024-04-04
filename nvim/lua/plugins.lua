@@ -96,9 +96,7 @@ return {
                 sections = {
                     lualine_a = {'mode'},
                     lualine_b = {'branch', 'diff', 'diagnostics'},
-                    lualine_c = {{require('auto-session.lib').current_session_name},
-                        require('wrapping').get_current_mode,
-                        'filename'},
+                    lualine_c = { 'filename'},
                     lualine_x = {'encoding', 'fileformat', 'filetype'},
                     lualine_y = {'progress', function() return vim.fn.wordcount().words end},
                     lualine_z = {'location'},
@@ -135,7 +133,7 @@ return {
                         {
                             desc = 'Restore Session',
                             group = 'Number',
-                            action = 'SessionRestore',
+                            action = 'SessionLoad',
                             key = 's',
                         },
                     },
@@ -195,23 +193,16 @@ return {
         end
     },
 
-    { 'rmagatti/auto-session', lazy = true,
-        cmd = { 'SessionSave', 'SessionDelete', 'SessionRestore'},
+    { 'olimorris/persisted.nvim', lazy = false,
+        cmd = { 'SessionLoad', 'SessionSave', 'SessionDelete' },
         config = function()
-            require("auto-session").setup {
-                auto_session_use_git_branch = true,
-                auto_session_enable_last_session = true,
-                auto_restore_enabled = false,
-                auto_session_enabled = true,
-                log_level = "error"
-            }
-        end
-    },
-
-    { 'rmagatti/session-lens', lazy = true,
-        dependencies = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
-        config = function()
-            require('session-lens').setup({--[[your custom config--]]})
+            require('persisted').setup({
+                use_git_branch = true, -- create session files based on the branch of a git enabled repository
+                default_branch = "main", -- the branch to load if a session file is not found for the current branch
+                autosave = true, -- automatically save session files when exiting Neovim
+                should_autosave = function() return vim.bo.filetype ~= "dashboard" end, -- do not autosave if the dashboard is the current filetype
+                follow_cwd = true, -- change session file name to match current working directory if it changes
+            })
         end
     },
 
