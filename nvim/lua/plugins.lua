@@ -150,6 +150,15 @@ return {
 
     { 'nvim-lua/plenary.nvim' },
 
+    { 'willothy/flatten.nvim', lazy = false,
+        priority = 1001,
+        opts = {
+            window = {
+                open = "current",
+            },
+        }
+    },
+
     { 'tpope/vim-fugitive', lazy = true,
         cmd = { 'Git' },
         keys = {
