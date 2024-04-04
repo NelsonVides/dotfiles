@@ -321,7 +321,8 @@ return {
 
     { 'johnfrankmorgan/whitespace.nvim',
         config = function ()
-            require('whitespace-nvim').setup {
+            local whitespace = require('whitespace-nvim')
+            whitespace.setup {
                 highlight = 'DiffDelete',
                 ignored_filetypes = {
                     'TelescopePrompt',
@@ -331,7 +332,7 @@ return {
                     'help' },
                 ignore_terminal = true,
             }
-            vim.keymap.set('n', '<Leader>s', require('whitespace-nvim').trim)
+            vim.keymap.set('n', '<Leader>s', whitespace.trim)
         end
     },
 
