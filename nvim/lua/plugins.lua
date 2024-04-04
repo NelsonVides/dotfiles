@@ -105,7 +105,7 @@ return {
         end
     },
 
-    { 'nvimdev/dashboard-nvim',
+    { 'nvimdev/dashboard-nvim', lazy = true,
         dependencies = 'nvim-tree/nvim-web-devicons',
         event = 'VimEnter',
         config = function()
@@ -206,14 +206,15 @@ return {
         end
     },
 
-    { 'vhyrro/luarocks.nvim',
+    { 'vhyrro/luarocks.nvim', lazy = true,
         priority = 1000,
         opts = {
             luarocks_build_args = { "--with-lua-include=/home/videsnelson/.asdf/installs/luajit/2.0.5--2.4.4/include/" }, -- extra options to pass to luarocks's configuration script
         }
     },
-    { 'nvim-neorg/neorg', lazy = false, -- specify lazy = false because some lazy.nvim distributions set lazy = true by default
-        -- tag = "*",
+    { 'nvim-neorg/neorg', lazy = true,
+        cmd = { 'Neorg' },
+        ft = { 'norg' },
         dependencies = { 'luarocks.nvim' },
         config = function()
             require('neorg').setup {
@@ -278,7 +279,7 @@ return {
         end
     },
 
-    { 'nvim-tree/nvim-tree.lua', lazy = false,
+    { 'nvim-tree/nvim-tree.lua', lazy = true,
         cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
@@ -328,9 +329,7 @@ return {
     { 'kylechui/nvim-surround', lazy = true,
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup {}
-        end
+        config = true
     },
 
     { 'yorickpeterse/nvim-window', lazy = true,
@@ -341,6 +340,7 @@ return {
     },
 
     { 'windwp/nvim-autopairs',
+        event = "InsertEnter",
         config = function()
             require('nvim-autopairs').setup({
                 check_ts = true
