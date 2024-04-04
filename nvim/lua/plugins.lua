@@ -534,6 +534,18 @@ return {
         end
     },
 
+    { 'backdround/global-note.nvim', lazy = true,
+        cmd = { 'GlobalNote' },
+        config = function()
+            local global_note = require("global-note")
+            global_note.setup()
+            vim.keymap.set("n", "<leader>n", global_note.toggle_note, {desc = "Toggle global note"})
+        end,
+        keys = {
+            { "<leader>m", "<cmd>lua require('global-note').toggle_note()<cr>" },
+        },
+    },
+
     { 'nanozuki/tabby.nvim',
         lazy = false,
         event = 'VimEnter',
