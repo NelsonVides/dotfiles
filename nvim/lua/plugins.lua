@@ -461,15 +461,11 @@ return {
     },
 
     { 'gbprod/yanky.nvim', lazy = true,
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
+        opts = {},
     },
 
     { 'p00f/clangd_extensions.nvim', lazy = true,
-        config = function() end,
+        config = true,
         opts = {
             inlay_hints = {
                 inline = false,
