@@ -85,21 +85,19 @@ return {
     { 'nvim-lualine/lualine.nvim',
         config = function ()
             require('lualine').setup {
-                theme = 'vscode',
+                theme = 'auto',
                 options = {
-                    icons_enabled = false,
-                    theme = gruvbox_light,
-                    -- theme = nord_theme,
+                    icons_enabled = true,
                     component_separators = { left = '', right = ''},
                     section_separators = { left = '', right = ''},
                 },
                 sections = {
-                    lualine_a = {'mode'},
+                    lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end}},
                     lualine_b = {'branch', 'diff', 'diagnostics'},
-                    lualine_c = { 'filename'},
-                    lualine_x = {'encoding', 'fileformat', 'filetype'},
-                    lualine_y = {'progress', function() return vim.fn.wordcount().words end},
-                    lualine_z = {'location'},
+                    lualine_c = {'filename'},
+                    lualine_x = {'encoding', 'fileformat'},
+                    lualine_y = {'filetype'},
+                    lualine_z = {function() return vim.fn.wordcount().words end, 'progress', 'location'},
                 },
             }
         end
