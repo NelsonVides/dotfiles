@@ -15,3 +15,77 @@ export UNIXODBC_INCLUDE_DIR="/usr/local/opt/unixodbc/include"
 # export CFLAGS="-I$OPENSSL_INCLUDE_DIR $CFLAGS"
 # export CFLAGS="-I/usr/local/opt/openssl/include -O2 -g $CFLAGS"
 export LDFLAGS="-L$OPENSSL_LIB_DIR -L$UNIXODBC_LIB_DIR"
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+_sshfs_do_mount()
+{
+    sshfs -o reconnect,allow_other,defer_permissions -p 20656 videsnelson@XPS:$1 $2
+}
+
+_sshfs_do_unmount()
+{
+    umount $1
+}
+
+sshfs_helper()
+{
+    if [ $# -lt 2 ]; then
+        echo "Two arguments required"
+        return 1
+    fi
+
+    case $1 in
+        mount)
+            case $2 in
+                repos)
+                    _sshfs_do_mount /home/videsnelson/repos /Users/nelsonvides/linuxmounts/repos
+                    return 0
+                    ;;
+                business)
+                    _sshfs_do_mount /home/videsnelson/business /Users/nelsonvides/linuxmounts/business
+                    return 0
+                    ;;
+                media)
+                    _sshfs_do_mount /media/videsnelson/media /Users/nelsonvides/linuxmounts/media
+                    return 0
+                    ;;
+                data)
+                    _sshfs_do_mount /media/videsnelson/BackupsData /Users/nelsonvides/linuxmounts/data
+                    return 0
+                    ;;
+                *)
+                    echo "Unknown argument $2"
+                    return 1
+                    ;;
+            esac
+            ;;
+        unmount)
+            case $2 in
+                repos)
+                    _sshfs_do_unmount ~/linuxmounts/repos
+                    return 0
+                    ;;
+                business)
+                    _sshfs_do_unmount ~/linuxmounts/business
+                    return 0
+                    ;;
+                media)
+                    _sshfs_do_unmount ~/linuxmounts/media
+                    return 0
+                    ;;
+                data)
+                    _sshfs_do_unmount ~/linuxmounts/data
+                    return 0
+                    ;;
+                *)
+                    echo "Unknown argument $2"
+                    return 1
+                    ;;
+            esac
+            ;;
+        *)
+            echo "Unknown argument $1"
+            return 1
+            ;;
+    esac
+}
