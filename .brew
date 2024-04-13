@@ -1,7 +1,7 @@
 ulimit -n 24576
 export DEFAULT_USER="nelsonvides"
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="/usr/local/sbin:/usr/local/opt/curl/bin:/usr/local/opt/openssl/bin:$PATH"
 
