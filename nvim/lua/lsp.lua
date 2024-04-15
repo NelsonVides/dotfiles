@@ -66,7 +66,7 @@ nvim_lsp.clangd.setup({
   capabilities = {client_capabilities, cmp_capabilities}
 })
 
-local path_to_ltex = vim.fn.expand("/home/videsnelson/.cache/ltex-ls-16.0.0/bin/ltex-ls")
+local path_to_ltex = vim.fn.expand("~/.cache/ltex-ls/bin/ltex-ls")
 nvim_lsp.ltex.setup({
     cmd = {path_to_ltex},
     filetypes = { 'gitcommit', 'markdown', 'org', 'norg', 'tex', 'html', 'xhtml' },
