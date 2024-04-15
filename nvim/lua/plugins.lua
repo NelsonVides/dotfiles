@@ -11,7 +11,8 @@ return {
                     "lua", "luadoc", "vimdoc", "norg", "graphql",
                     "sql", "bash", "make", "cmake", "diff", "dockerfile",
                     "git_config", "git_rebase", "gitcommit", "gitignore", "ssh_config",
-                    "html", "xml", "json", "latex", "markdown", "toml", "yaml", "regex"
+                    "html", "xml", "json", "latex", "markdown", "markdown_inline", "regex",
+                    "toml", "yaml",
                 },
                 incremental_selection = {
                     enable = true,
