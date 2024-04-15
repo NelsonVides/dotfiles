@@ -30,6 +30,14 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     end
 })
 
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = {"*.brew"},
+    callback = function()
+        local buf = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_option(buf, "filetype", "bash")
+    end
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "gitcommit",
     callback = function()
