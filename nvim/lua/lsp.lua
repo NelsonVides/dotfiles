@@ -44,34 +44,20 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 --   }
 -- }
 
-local path_to_elp = vim.fn.expand("~/repos/erlang-language-platform/releases/elp")
+local path_to_elp = vim.fn.expand("~/repos/public/erlang-language-platform/releases/elp")
 nvim_lsp.elp.setup({
   cmd = {path_to_elp, 'server'},
   on_attach = on_attach,
   capabilities = {client_capabilities, cmp_capabilities}
 })
 
--- Elixir
-local path_to_elixirls = vim.fn.expand("~/repos/elixir-ls/release/language_server.sh")
-nvim_lsp.elixirls.setup({
-  cmd = {path_to_elixirls},
-  on_attach = on_attach,
-  capabilities = {client_capabilities, cmp_capabilities},
-  settings = {
-    elixirLS = {
-      dialyzerEnabled = false,
-      fetchDeps = false
-    }
-  }
+local path_to_elixir_lexical = vim.fn.expand("~/repos/public/lexical/_build/dev/package/lexical/bin/start_lexical.sh")
+nvim_lsp.lexical.setup({
+    cmd = { path_to_elixir_lexical },
+    on_attach = on_attach,
+    filetypes = { "elixir", "eelixir", "heex" },
+    settings = {},
 })
-
--- Python
-local path_to_pythonls = vim.fn.expand("/home/videsnelson/.local/bin/pylsp")
-nvim_lsp.pylsp.setup{
-  cmd = {path_to_pythonls},
-  on_attach=on_attach,
-  capabilities = {client_capabilities, cmp_capabilities}
-}
 
 local path_to_clangd = vim.fn.expand("/usr/bin/clangd")
 nvim_lsp.clangd.setup({
