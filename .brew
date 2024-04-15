@@ -1,21 +1,21 @@
-ulimit -n 24576
+export PATH="$HOME/.docker/bin:$PATH"
 export DEFAULT_USER="nelsonvides"
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+ulimit -n 24576
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export PATH="/usr/local/sbin:/usr/local/opt/curl/bin:/usr/local/opt/openssl/bin:$PATH"
+export OPENSSL_ROOT_DIR="/opt/homebrew/opt/openssl"
+export OPENSSL_LIB_DIR="$OPENSSL_ROOT_DIR/lib"
+export OPENSSL_INCLUDE_DIR="$OPENSSL_ROOT_DIR/include"
 
-export OPENSSL_ROOT_DIR="/usr/local/opt/openssl@3.1"
-export OPENSSL_LIB_DIR="/usr/local/opt/openssl/lib"
-export OPENSSL_INCLUDE_DIR="/usr/local/opt/openssl/include"
-export UNIXODBC_LIB_DIR="/usr/local/opt/unixodbc/lib"
-export UNIXODBC_INCLUDE_DIR="/usr/local/opt/unixodbc/include"
+export UNIXODBC_ROOT_DIR="/opt/homebrew/opt/unixodbc"
+export UNIXODBC_LIB_DIR="$UNIXODBC_ROOT_DIR/lib"
+export UNIXODBC_INCLUDE_DIR="$UNIXODBC_ROOT_DIR/include"
 
-# export CC="/usr/bin/gcc -I%UNIXODBC_INCLUDE_DIR"
-# export CFLAGS="-I$OPENSSL_INCLUDE_DIR $CFLAGS"
-# export CFLAGS="-I/usr/local/opt/openssl/include -O2 -g $CFLAGS"
+export CFLAGS="-I$OPENSSL_INCLUDE_DIR -I$UNIXODBC_INCLUDE_DIR"
 export LDFLAGS="-L$OPENSSL_LIB_DIR -L$UNIXODBC_LIB_DIR"
-export HOMEBREW_NO_AUTO_UPDATE=1
 
 _sshfs_do_mount()
 {
