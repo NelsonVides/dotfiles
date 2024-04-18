@@ -224,28 +224,6 @@ return {
         end
     },
 
-    { 'akinsho/toggleterm.nvim', lazy = true,
-        cmd = { 'ToggleTerm' },
-        keys = {
-            { "<leader>t", "<cmd>ToggleTerm<cr>" },
-        },
-        config = function()
-            require('toggleterm').setup {
-                open_mapping = [[<leader>t]],
-                insert_mappings = false,
-                direction = 'horizontal'
-            }
-            vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-n>', {noremap = true, silent = true})
-        end
-    },
-
-    { 'samjwill/nvim-unception',
-        init = function()
-            -- Optional settings go here!
-            -- e.g.) vim.g.unception_open_buffer_in_new_tab = true
-        end
-    },
-
     { 'gbprod/yanky.nvim', lazy = true,
         opts = {},
     },
