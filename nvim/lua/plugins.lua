@@ -73,27 +73,6 @@ return {
         },
     },
     { 'sindrets/diffview.nvim', lazy = true },
-    { 'NeogitOrg/neogit', lazy = true,
-        dependencies = {
-            'nvim-lua/plenary.nvim',         -- required
-            'sindrets/diffview.nvim',        -- optional - Diff integration
-            -- Only one of these is needed, not both.
-            'nvim-telescope/telescope.nvim', -- optional
-            -- 'ibhagwan/fzf-lua',              -- optional
-        },
-        keys = {
-            { "<leader>g", "<cmd>:Neogit<cr>" },
-            { "<leader>d", "<cmd>:Neogit diff<cr>" }
-        },
-        config = function()
-            require('neogit').setup {
-                graph_style = "unicode",
-                telescope_sorter = function()
-                    return require("telescope").extensions.fzy.native_fzy_sorter()
-                end,
-            }
-        end
-    },
 
     { 'jiaoshijie/undotree', lazy = true,
         dependencies = 'nvim-lua/plenary.nvim',
