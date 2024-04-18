@@ -13,11 +13,11 @@ map('n', 'q:', ':q', { silent = true })
 -- Let's be reasonable, shall we? Move vertically by visual line
 map('n', 'k', 'gk', { silent = true })
 map('n', 'j', 'gj', { silent = true })
--- Switch windows
-map('n', '<C-j>', '<C-w><C-j>')
-map('n', '<C-k>', '<C-w><C-k>')
-map('n', '<C-l>', '<C-w><C-l>')
-map('n', '<C-h>', '<C-w><C-h>')
+-- Switch windows: { 'alexghergh/nvim-tmux-navigation' } plugin already does just this!
+-- map('n', '<C-j>', '<C-w><C-j>')
+-- map('n', '<C-k>', '<C-w><C-k>')
+-- map('n', '<C-l>', '<C-w><C-l>')
+-- map('n', '<C-h>', '<C-w><C-h>')
 
 map('n', 'Q', ':q<CR>')
 map('n', '<Esc><Esc>', ':update<CR>')
