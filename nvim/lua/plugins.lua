@@ -207,34 +207,6 @@ return {
         opts = {},
     },
 
-    { 'p00f/clangd_extensions.nvim', lazy = true,
-        config = true,
-        opts = {
-            inlay_hints = {
-                inline = false,
-            },
-            ast = {
-                role_icons = {
-                    type = "",
-                    declaration = "",
-                    expression = "",
-                    specifier = "",
-                    statement = "",
-                    ["template argument"] = "",
-                },
-                kind_icons = {
-                    Compound = "",
-                    Recovery = "",
-                    TranslationUnit = "",
-                    PackExpansion = "",
-                    TemplateTypeParm = "",
-                    TemplateTemplateParm = "",
-                    TemplateParamObject = "",
-                },
-            },
-        },
-    },
-
     { 'nvim-telescope/telescope-fzy-native.nvim' },
     { 'nvim-telescope/telescope.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
