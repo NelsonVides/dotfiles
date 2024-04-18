@@ -66,15 +66,6 @@ return {
 
     { 'nvim-lua/plenary.nvim' },
 
-    { 'willothy/flatten.nvim', lazy = false,
-        priority = 1001,
-        opts = {
-            window = {
-                open = "current",
-            },
-        }
-    },
-
     { 'tpope/vim-fugitive', lazy = true,
         cmd = { 'Git' },
         keys = {
@@ -245,6 +236,13 @@ return {
                 direction = 'horizontal'
             }
             vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-n>', {noremap = true, silent = true})
+        end
+    },
+
+    { 'samjwill/nvim-unception',
+        init = function()
+            -- Optional settings go here!
+            -- e.g.) vim.g.unception_open_buffer_in_new_tab = true
         end
     },
 
