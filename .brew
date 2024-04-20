@@ -14,8 +14,28 @@ export UNIXODBC_ROOT_DIR="/opt/homebrew/opt/unixodbc"
 export UNIXODBC_LIB_DIR="$UNIXODBC_ROOT_DIR/lib"
 export UNIXODBC_INCLUDE_DIR="$UNIXODBC_ROOT_DIR/include"
 
-export CFLAGS="-I$OPENSSL_INCLUDE_DIR -I$UNIXODBC_INCLUDE_DIR"
-export LDFLAGS="-L$OPENSSL_LIB_DIR -L$UNIXODBC_LIB_DIR"
+# MongooseIM
+if git status &>/dev/null &&
+    git remote -v | grep "github.com:esl/MongooseIM.git (fetch)" &>/dev/null &&
+    [[ "$PWD" = $(git rev-parse --show-toplevel) ]]; then
+    source $PWD/tools/test-runner-complete.sh &>/dev/null
+    export CFLAGS="-I$OPENSSL_INCLUDE_DIR -I$UNIXODBC_INCLUDE_DIR"
+    export LDFLAGS="-L$OPENSSL_LIB_DIR -L$UNIXODBC_LIB_DIR"
+
+# Erlang/OTP
+elif git status &>/dev/null &&
+    git remote -v | grep "github.com:erlang/otp.git (fetch)" &>/dev/null &&
+    [[ "$PWD" = $(git rev-parse --show-toplevel) ]]; then
+    export ERL_TOP=`pwd`
+    export MAKEFLAGS=-j12
+    export PATH=$HOME/repos/public/otp/bin:$PATH
+    export TESTROOT=$ERL_TOP/release/tests
+    export ASAN_LOG_DIR=$TESTROOT/test_server/asan_logs
+    # ./configure --prefix $ERL_TOP/release/
+    # make TYPE=debug && make emulator_test ARGS="-suite distribution_SUITE -group bulk_send" TYPE=debug
+    # make TYPE=debug && make emulator_test ARGS="-suite distribution_SUITE -group bulk_send -testcase bulk_multi_send_2" TYPE=debug
+    # make TYPE=debug && make ssl_test ARGS="-suite ssl_dist_SUITE -testcase multisend" TYPE=debug
+fi
 
 _sshfs_do_mount()
 {
