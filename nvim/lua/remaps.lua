@@ -35,12 +35,3 @@ map('n', '<leader>7', '7gt')
 map('n', '<leader>8', '8gt')
 map('n', '<leader>9', '9gt')
 map('n', '<leader>0', ':tablast<CR>')
-
-map('i', '<silent><C-k>', '<Cmd>Lspsaga signature_help<CR>')
-map('n', '<silent>K', ':Lspsaga hover_doc<CR>')
-map('n', '<silent>gh', '<Cmd>Lspsaga lsp_finder<CR>')
-
-map('n', 'ff', '<cmd>Telescope find_files<CR>')
-map('n', 'fr', '<cmd>Telescope live_grep<CR>')
-map('n', 'fb', '<cmd>Telescope buffers<CR>')
-map('n', 'fh', '<cmd>Telescope help_tags<CR>')
