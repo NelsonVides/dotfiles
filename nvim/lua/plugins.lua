@@ -207,7 +207,6 @@ return {
                     down = "<C-j>",
                     up = "<C-k>",
                     right = "<C-l>",
-                    next = "<C-Space>",
                 }
             }
         end
