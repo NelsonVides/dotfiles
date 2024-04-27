@@ -70,7 +70,7 @@ sshfs_helper()
                     return 0
                     ;;
                 data)
-                    _sshfs_do_mount /media/videsnelson/BackupsData /Users/nelsonvides/linuxmounts/data
+                    _sshfs_do_mount /media/videsnelson/Data /Users/nelsonvides/linuxmounts/data
                     return 0
                     ;;
                 *)
