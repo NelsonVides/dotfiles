@@ -109,3 +109,22 @@ sshfs_helper()
             ;;
     esac
 }
+
+toggletheme()
+{
+    LIGHTTHEME="catppuccin_latte"
+    DARKTHEME="xterm"
+    ALACRITTYCONFPATH="${HOME}/.config/alacritty/alacritty.toml"
+    # Toggle logic based on current mode
+    if ($( defaults read -g AppleInterfaceStyle &> /dev/null )) ; then
+        dark-mode off
+        gsed -i --follow-symlinks "s/${DARKTHEME}/${LIGHTTHEME}/" $ALACRITTYCONFPATH
+        # sed -i 's/dark/light/' "$NVIMCONF"
+        # switch_vim_theme "light"
+    else
+        dark-mode on
+        gsed -i --follow-symlinks "s/${LIGHTTHEME}/${DARKTHEME}/" $ALACRITTYCONFPATH
+        # sed -i 's/light/dark/' "$NVIMCONF"
+        # switch_vim_theme "dark"
+    fi
+}
