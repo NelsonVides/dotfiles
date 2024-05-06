@@ -110,20 +110,41 @@ sshfs_helper()
     esac
 }
 
+__toggletheme()
+{
+    case $1 in
+        on)
+            gsed -i --follow-symlinks "s/$2/$3/" $4
+            ;;
+        off)
+            gsed -i --follow-symlinks "s/$3/$2/" $4
+            ;;
+        *)
+            echo "Unknown argument $1"
+            return 1
+            ;;
+    esac
+}
+
 toggletheme()
 {
-    LIGHTTHEME="catppuccin_latte"
-    DARKTHEME="xterm"
+    DELTALIGHTTHEME="gruvbox-light"
+    DELTADARKTHEME="gruvbox-dark"
+    DELTACONFPATH="${HOME}/.gitconfig"
+    ALACRITTYLIGHTTHEME="catppuccin_latte"
+    ALACRITTYDARKTHEME="xterm"
     ALACRITTYCONFPATH="${HOME}/.config/alacritty/alacritty.toml"
-    # Toggle logic based on current mode
     if ($( defaults read -g AppleInterfaceStyle &> /dev/null )) ; then
         dark-mode off
-        gsed -i --follow-symlinks "s/${DARKTHEME}/${LIGHTTHEME}/" $ALACRITTYCONFPATH
+        __toggletheme off "$ALACRITTYLIGHTTHEME" "$ALACRITTYDARKTHEME" "$ALACRITTYCONFPATH"
+        __toggletheme off "$DELTALIGHTTHEME" "$DELTADARKTHEME" "$DELTACONFPATH"
+
         # sed -i 's/dark/light/' "$NVIMCONF"
         # switch_vim_theme "light"
     else
         dark-mode on
-        gsed -i --follow-symlinks "s/${LIGHTTHEME}/${DARKTHEME}/" $ALACRITTYCONFPATH
+        __toggletheme on "$ALACRITTYLIGHTTHEME" "$ALACRITTYDARKTHEME" "$ALACRITTYCONFPATH"
+        __toggletheme on "$DELTALIGHTTHEME" "$DELTADARKTHEME" "$DELTACONFPATH"
         # sed -i 's/light/dark/' "$NVIMCONF"
         # switch_vim_theme "dark"
     fi
