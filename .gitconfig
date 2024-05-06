@@ -1,0 +1,48 @@
+[user]
+	name = Nelson Vides
+	email = nelson.vides@erlang-solutions.com
+	signingKey = 759BE2B1DCEDF1F7
+[core]
+    excludesfile = /Users/nelsonvides/repos/.gitignore
+    editor = nvim --cmd 'let g:unception_block_while_host_edits=1'
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+[pull]
+	ff = only
+
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    line-numbers = true
+    features = decorations
+    syntax-theme = gruvbox-dark
+    plus-style = syntax bold auto
+    plus-emph-style = auto bold auto
+[delta "interactive"]
+    keep-plus-minus-markers = false
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
+
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+
+[includeIf "gitdir:~/repos/business/"]
+    path = ~/repos/business/.gitconfig_work
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
