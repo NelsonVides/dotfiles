@@ -1,0 +1,11 @@
+{
+  "name": "user_snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "erlang",
+        "path": "./erlang.json"
+      }
+    ]
+  }
+}
