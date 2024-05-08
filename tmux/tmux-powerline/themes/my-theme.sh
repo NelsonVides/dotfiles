@@ -142,6 +142,7 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 		#"ifstat 30 255"
 		#"ifstat_sys 30 255"
 		# "lan_ip $sky_blue $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
+		"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		"wan_ip $sky_blue $thm_bg"
 		"vcs_branch $thm_gray"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} $thm_bg"
