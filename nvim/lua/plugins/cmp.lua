@@ -46,7 +46,15 @@ return {
     { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/nvim-cmp',
         dependencies = {
-            'L3MON4D3/LuaSnip'
+            'L3MON4D3/LuaSnip',
+            'chrisgrieser/cmp_yanky',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            'lukas-reineke/cmp-under-comparator',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-calc',
+            'hrsh7th/cmp-cmdline',
         },
         config = function()
             local cmp = require('cmp')
