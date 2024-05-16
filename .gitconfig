@@ -3,7 +3,7 @@
 	email = nelson.vides@erlang-solutions.com
 	signingKey = 759BE2B1DCEDF1F7
 [core]
-    excludesfile = /Users/nelsonvides/repos/.gitignore
+    excludesfile = ~/repos/.gitignore
     editor = nvim --cmd 'let g:unception_block_while_host_edits=1'
 [gpg]
 	program = gpg
