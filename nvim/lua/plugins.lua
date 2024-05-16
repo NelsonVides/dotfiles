@@ -82,12 +82,6 @@ return {
         },
     },
 
-    { 'terrortylor/nvim-comment',
-        config = function()
-            require('nvim_comment').setup {}
-        end
-    },
-
     { 'olimorris/persisted.nvim', lazy = false,
         cmd = { 'SessionLoad', 'SessionSave', 'SessionDelete' },
         config = function()
