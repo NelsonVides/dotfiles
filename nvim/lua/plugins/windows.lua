@@ -1,5 +1,108 @@
 return {
 
+    { 'nvim-lualine/lualine.nvim',
+        config = function ()
+            require('lualine').setup {
+                theme = 'auto',
+                options = {
+                    icons_enabled = true,
+                    component_separators = { left = '', right = ''},
+                    section_separators = { left = '', right = ''},
+                },
+                sections = {
+                    lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end}},
+                    lualine_b = {{'branch', fmt = function(str) return str:sub(1,1) end}, 'diff', 'diagnostics'},
+                    lualine_c = {'filename'},
+                    lualine_x = {'encoding', 'fileformat'},
+                    lualine_y = {'filetype'},
+                    lualine_z = {function() return vim.fn.wordcount().words end, 'progress', 'location'},
+                },
+            }
+        end
+    },
+
+    { 'nvimdev/dashboard-nvim', lazy = true,
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup {
+                theme = 'hyper',
+                config = {
+                    week_header = {
+                        enable = true,
+                    },
+                    shortcut = {
+                        {
+                            desc = 'Lazy update',
+                            group = '@property',
+                            action = 'Lazy update',
+                            key = 'u'
+                        },
+                        {
+                            icon = ' ',
+                            icon_hl = '@variable',
+                            desc = 'Files',
+                            group = 'Label',
+                            action = 'Telescope find_files',
+                            key = 'f',
+                        },
+                        {
+                            desc = 'Restore Session',
+                            group = 'Number',
+                            action = 'SessionLoad',
+                            key = 's',
+                        },
+                    },
+                    mru = {
+                        limit = 20,
+                        icon = 'Most Recent Files',
+                        label = '',
+                        cwd_only = false
+                    },
+                }
+            }
+        end
+    },
+
+    { 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require('nvim-web-devicons').setup {
+                default = true
+            }
+        end
+    },
+
+    { 'nvim-tree/nvim-tree.lua', lazy = true,
+        cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            local function my_on_attach(bufnr)
+                local api = require('nvim-tree.api')
+                local function opts(desc)
+                    return {desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true}
+                end
+                -- default mappings
+                api.config.mappings.default_on_attach(bufnr)
+                -- custom mappings
+                vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
+                vim.keymap.set('n', 's', api.node.open.horizontal, opts('Open: Horizontal Split'))
+                vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
+                vim.keymap.set('n', 'i', api.node.show_info_popup, opts('Info'))
+                vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+            end
+            require("nvim-tree").setup {
+                on_attach = my_on_attach,
+                view = {
+                    float = {enable = true}
+                },
+                filters = {
+                    git_ignored = false,
+                    custom = {'*.beam'}
+                }
+            }
+        end,
+    },
+
     { 'nyngwang/NeoZoom.lua',
         config = function ()
             require('neo-zoom').setup {
