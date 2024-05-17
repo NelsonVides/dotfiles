@@ -15,7 +15,6 @@ local on_attach = function(client, bufnr)
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -26,8 +25,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
@@ -42,16 +39,14 @@ end
 -- }
 
 return {
-    {
-        'neovim/nvim-lspconfig',
+    { 'neovim/nvim-lspconfig',
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
         },
 
         config = function()
             local nvim_lsp = require('lspconfig')
-            local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-            local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
                 vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -60,17 +55,21 @@ return {
                 }
             )
 
-            local path_to_elp = vim.fn.expand("~/repos/public/erlang-language-platform/releases/elp")
+            local path_to_elp = vim.fn.expand("~/repos/public/erlang-language-platform/target/release/elp")
             nvim_lsp.elp.setup({
                 cmd = {path_to_elp, 'server'},
                 on_attach = on_attach,
-                capabilities = {client_capabilities, cmp_capabilities}
+                capabilities = capabilities,
+                flags = {
+                    exit_timeout = 0,
+                }
             })
 
             local path_to_elixir_lexical = vim.fn.expand("~/repos/public/lexical/_build/dev/package/lexical/bin/start_lexical.sh")
             nvim_lsp.lexical.setup({
-                cmd = { path_to_elixir_lexical },
+                cmd = {path_to_elixir_lexical},
                 on_attach = on_attach,
+                capabilities = capabilities,
                 filetypes = { "elixir", "eelixir", "heex" },
                 settings = {},
             })
@@ -78,13 +77,15 @@ return {
             local path_to_clangd = vim.fn.expand("/usr/bin/clangd")
             nvim_lsp.clangd.setup({
                 cmd = {path_to_clangd},
-                on_attach=on_attach,
-                capabilities = {client_capabilities, cmp_capabilities}
+                on_attach = on_attach,
+                capabilities = capabilities
             })
 
             local path_to_ltex = vim.fn.expand("~/.cache/ltex-ls/bin/ltex-ls")
             nvim_lsp.ltex.setup({
                 cmd = {path_to_ltex},
+                on_attach = on_attach,
+                capabilities = capabilities,
                 filetypes = { 'gitcommit', 'markdown', 'org', 'norg', 'tex', 'html', 'xhtml' },
                 flags = { debounce_text_changes = 300 },
                 settings = {
@@ -99,37 +100,10 @@ return {
                         },
                     }
                 },
-                on_attach = on_attach,
             })
         end
     },
 
-    { 'p00f/clangd_extensions.nvim', lazy = true,
-        config = true,
-        opts = {
-            inlay_hints = {
-                inline = false,
-            },
-            ast = {
-                role_icons = {
-                    type = "",
-                    declaration = "",
-                    expression = "",
-                    specifier = "",
-                    statement = "",
-                    ["template argument"] = "",
-                },
-                kind_icons = {
-                    Compound = "",
-                    Recovery = "",
-                    TranslationUnit = "",
-                    PackExpansion = "",
-                    TemplateTypeParm = "",
-                    TemplateTemplateParm = "",
-                    TemplateParamObject = "",
-                },
-            },
-        },
-    },
+    { 'p00f/clangd_extensions.nvim', lazy = true, config = true },
 
 }
