@@ -15,23 +15,6 @@ return {
                 paths = { vim.fn.stdpath("config") .. "/snippets" },
             })
         end,
-        keys = {
-            {
-                "<leader><leader>;",
-                function() require("luasnip").jump(1) end,
-                desc = "Jump forward a snippet placement",
-                mode = "i",
-                noremap = true,
-                silent = true
-            }, {
-                "<leader><leader>,",
-                function() require("luasnip").jump(-1) end,
-                desc = "Jump backward a snippet placement",
-                mode = "i",
-                noremap = true,
-                silent = true
-            }
-        },
     },
     { 'saadparwaiz1/cmp_luasnip' },
 
@@ -39,6 +22,7 @@ return {
     { 'chrisgrieser/cmp_yanky' },
     { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'lukas-reineke/cmp-under-comparator' },
+    { 'petertriho/cmp-git' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
@@ -50,6 +34,7 @@ return {
             'chrisgrieser/cmp_yanky',
             'hrsh7th/cmp-nvim-lsp-signature-help',
             'lukas-reineke/cmp-under-comparator',
+            'petertriho/cmp-git',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
@@ -58,7 +43,9 @@ return {
         },
         config = function()
             local cmp = require('cmp')
+            local luasnip = require('luasnip')
             cmp.setup({
+                window = {},
                 snippet = {
                     expand = function(args)
                         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -78,32 +65,117 @@ return {
                         cmp.config.compare.order,
                     },
                 },
-                window = {},
+                sources = cmp.config.sources(
+                    {
+                        { name = 'nvim_lsp' },
+                        { name = 'nvim_lsp_signature_help' },
+                        { name = 'luasnip' },
+                        { name = 'buffer',
+                            option = {
+                                get_bufnrs = function()
+                                    local bufs = {}
+                                    for _, win in ipairs(vim.api.nvim_list_wins()) do
+                                        bufs[vim.api.nvim_win_get_buf(win)] = true
+                                    end
+                                    return vim.tbl_keys(bufs)
+                                end
+                            }
+                        },
+                        { name = 'cmp_yanky' }
+                    },
+                    {
+                        { name = 'calc' },
+                        { name = 'path', option = {
+                            trailing_slash = true,
+                            label_trailing_slash = true
+                        } },
+                    }),
                 mapping = cmp.mapping.preset.insert({
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ["<C-n>"] = cmp.mapping({
+                        c = function()
+                            if cmp.visible() then
+                                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                            else
+                                vim.api.nvim_feedkeys(t("<Down>"), "n", true)
+                            end
+                        end,
+                        i = function(fallback)
+                            if cmp.visible() then
+                                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                            else
+                                fallback()
+                            end
+                        end,
+                    }),
+                    ["<C-p>"] = cmp.mapping({
+                        c = function()
+                            if cmp.visible() then
+                                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                            else
+                                vim.api.nvim_feedkeys(t("<Up>"), "n", true)
+                            end
+                        end,
+                        i = function(fallback)
+                            if cmp.visible() then
+                                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                            else
+                                fallback()
+                            end
+                        end,
+                    }),
+                    ['<CR>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if luasnip.expandable() then
+                                luasnip.expand()
+                            else
+                                -- Only confirm explicitly selected items
+                                cmp.confirm({ select = false })
+                            end
+                        else
+                            fallback()
+                        end
+                    end),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if #cmp.get_entries() == 1 then
+                                cmp.confirm({ select = true })
+                            else
+                                cmp.select_next_item()
+                            end
+                        elseif luasnip.locally_jumpable(1) then
+                            luasnip.jump(1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if #cmp.get_entries() == 1 then
+                                cmp.confirm({ select = true })
+                            else
+                                cmp.select_prev_item()
+                            end
+                        elseif luasnip.locally_jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
-                sources = cmp.config.sources(
-                    {
-                        { name = 'nvim_lsp' },
-                        { name = 'nvim_lsp_signature_help' },
-                        { name = 'buffer' },
-                        { name = 'luasnip' },
-                        { name = 'neorg' },
-                        { name = 'calc' },
-                        { name = 'cmp_yanky' }
-                    },
-                    {
-                        { name = 'path', option = {
-                            trailing_slash = true,
-                            label_trailing_slash = true
-                        } },
-                    })
             })
             -- Set configuration for specific filetype.
+            cmp.setup.filetype('neorg', {
+                sources = cmp.config.sources({
+                    { name = 'neorg' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+                },
+                {
+                    { name = 'buffer' },
+                })
+            })
             cmp.setup.filetype('gitcommit', {
                 sources = cmp.config.sources({
                     { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
