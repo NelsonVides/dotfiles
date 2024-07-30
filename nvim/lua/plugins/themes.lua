@@ -1,6 +1,5 @@
 return{
-    { 'zaldih/themery.nvim', lazy = true,
-        cmd = { 'Themery' },
+    { 'zaldih/themery.nvim',
         priority = 1000,
         config = function()
             require('themery').setup {
@@ -29,7 +28,6 @@ return{
                     { name = "catppuccin-latte (light)", colorscheme = "catppuccin-latte"},
                     { name = "kanagawa-lotus (light)", colorscheme = "kanagawa-lotus"},
                 }, -- Your list of installed colorschemes
-                themeConfigFile = "~/dotfiles/nvim/lua/theme.lua", -- Described below
                 livePreview = true -- Apply theme while browsing. Default to true.
             }
         end
