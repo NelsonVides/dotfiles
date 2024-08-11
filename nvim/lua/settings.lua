@@ -138,7 +138,8 @@ vim.opt.wrap = false
 vim.opt.wrapmargin = 0
 vim.opt.wrapscan = true
 vim.opt.showtabline = 2
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions="buffers,curdir,folds,tabpages,winsize,winpos,terminal,localoptions"
+vim.api.nvim_set_option("clipboard","unnamed")
 
 vim.cmd [[
 " Make background transparent
