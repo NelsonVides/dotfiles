@@ -55,7 +55,7 @@ return {
                 }
             )
 
-            local path_to_elp = vim.fn.expand("~/repos/public/erlang-language-platform/target/release/elp")
+            local path_to_elp = vim.fn.expand("~/repos/public/erlang-language-platform/target/github/elp")
             nvim_lsp.elp.setup({
                 cmd = {path_to_elp, 'server'},
                 on_attach = on_attach,
@@ -65,7 +65,7 @@ return {
                 }
             })
 
-            local path_to_elixir_lexical = vim.fn.expand("~/repos/public/lexical/_build/dev/package/lexical/bin/start_lexical.sh")
+            local path_to_elixir_lexical = vim.fn.expand("~/repos/public/lexical/_build/prod/package/lexical/bin/start_lexical.sh")
             nvim_lsp.lexical.setup({
                 cmd = {path_to_elixir_lexical},
                 on_attach = on_attach,
