@@ -22,11 +22,18 @@ return {
         cmd = { 'SessionLoad', 'SessionSave', 'SessionDelete' },
         config = function()
             require('persisted').setup({
-                use_git_branch = true, -- create session files based on the branch of a git enabled repository
-                default_branch = "main", -- the branch to load if a session file is not found for the current branch
+                use_git_branch = false, -- create session files based on the branch of a git enabled repository
+                autoload = false, -- Automatically load the session for the cwd on Neovim startup?
                 autosave = true, -- automatically save session files when exiting Neovim
                 should_autosave = function() return vim.bo.filetype ~= "dashboard" end, -- do not autosave if the dashboard is the current filetype
                 follow_cwd = true, -- change session file name to match current working directory if it changes
+                should_save = function()
+                    -- Do not save if a dashboard is the current filetype
+                    if vim.bo.filetype == "dashboard" then
+                        return false
+                    end
+                    return true
+                end,
             })
         end
     },
@@ -79,6 +86,7 @@ return {
                 }
             }
             require('telescope').load_extension('fzy_native')
+            require("telescope").load_extension("persisted")
             local builtin = require('telescope.builtin')
             vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
