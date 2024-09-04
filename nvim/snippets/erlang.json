@@ -2,6 +2,7 @@
     "statem": {
         "prefix": "statem",
         "description": "gen_statem building block",
+        "isFileTemplate": true,
         "body": [
             "-module($TM_FILENAME_BASE).",
             "",
@@ -48,6 +49,47 @@
             "    ?LOG_WARNING(#{what => unhandled_event, state => State, data => Data,",
             "                   type => EventType, content => EventContent}),",
             "    keep_state_and_data."
+        ]
+    },
+    "ct_SUITE": {
+        "prefix": "ct_SUITE",
+        "description": "ct_SUITE building block",
+        "isFileTemplate": true,
+        "body": [
+            "-module($TM_FILENAME_BASE).",
+            "-compile([export_all, nowarn_export_all]).",
+            "",
+            "-behaviour(ct_suite).",
+            "",
+            "-include_lib(\"stdlib/include/assert.hrl\").",
+            "",
+            "all() ->",
+            "    [",
+            "    ].",
+            "",
+            "groups() ->",
+            "    [",
+            "    ].",
+            "",
+            "init_per_suite(Config) ->",
+            "    Config.",
+            "",
+            "end_per_suite(Config) ->",
+            "    Config.",
+            "",
+            "init_per_group(_, Config) ->",
+            "    Config.",
+            "",
+            "end_per_group(_, _Config) ->",
+            "    ok.",
+            "",
+            "init_per_testcase(_, Config) ->",
+            "    Config.",
+            "",
+            "end_per_testcase(_, Config) ->",
+            "    Config.",
+            "",
+            "%% Tests"
         ]
     }
 }
