@@ -38,6 +38,13 @@ return {
         end
     },
 
+    { 'richardbizik/nvim-toc', lazy = true,
+        ft = {"markdown"},
+        config = function()
+            require("nvim-toc").setup({})
+        end
+    },
+
     { 'iamcco/markdown-preview.nvim', lazy = true,
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         build = function() vim.fn["mkdp#util#install"]() end,
