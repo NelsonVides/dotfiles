@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Utility to open links from my remote SSH server back into the SSH client
 
 if [[ -f ~/.localopenrc ]]; then
   . ~/.localopenrc

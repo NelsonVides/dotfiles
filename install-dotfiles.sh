@@ -3,48 +3,37 @@ set -e # exits if a command fails
 set -u # errors if an variable is referenced before being set
 
 is_app_installed() {
-  type "$1" &>/dev/null
+    type "$1" &>/dev/null
 }
 
 REPODIR="$(cd "$(dirname "$0")"; pwd -P)"
 cd "$REPODIR";
 
 if ! is_app_installed tmux; then
-  printf "WARNING: \"tmux\" command is not found. \
-Install it first\n"
-  exit 1
+    printf "WARNING: \"tmux\" command is not found. \
+        Install it first\n"
+            exit 1
 fi
 
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
-  printf "WARNING: Cannot found TPM (Tmux Plugin Manager) \
- at default location: \$HOME/.tmux/plugins/tpm.\n"
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    printf "WARNING: Cannot found TPM (Tmux Plugin Manager) \
+        at default location: \$HOME/.tmux/plugins/tpm.\n"
+            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 if [ -e "$HOME/.tmux.conf" ]; then
-  printf "Found existing .tmux.conf in your \$HOME directory. Will create a backup at $HOME/.tmux.conf.bak\n"
-  cp -f "$HOME/.tmux.conf" "$HOME/.tmux.conf.bak" 2>/dev/null || true
-fi
-
-if [ -e "$HOME/.vimrc" ]; then
-  printf "Found existing .vimrc in your \$HOME directory. Will create a backup at $HOME/.vimrc.bak\n"
-  cp -f "$HOME/.vimrc" "$HOME/.vimrc.bak" 2>/dev/null || true
+    printf "Found existing .tmux.conf in your \$HOME directory. Will create a backup at $HOME/.tmux.conf.bak\n"
+    cp -f "$HOME/.tmux.conf" "$HOME/.tmux.conf.bak" 2>/dev/null || true
 fi
 
 if [ -e "$HOME/.zshrc" ]; then
-  printf "Found existing .zshrc in your \$HOME directory. Will create a backup at $HOME/.zshrc.bak\n"
-  cp -f "$HOME/.zshrc" "$HOME/.zshrc.bak" 2>/dev/null || true
-fi
-
-if [ -e "$HOME/.bashrc" ]; then
-  printf "Found existing .bashrc in your \$HOME directory. Will create a backup at $HOME/.bashrc.bak\n"
-  cp -f "$HOME/.bashrc" "$HOME/.bashrc.bak" 2>/dev/null || true
+    printf "Found existing .zshrc in your \$HOME directory. Will create a backup at $HOME/.zshrc.bak\n"
+    cp -f "$HOME/.zshrc" "$HOME/.zshrc.bak" 2>/dev/null || true
 fi
 
 ln -sf "$HOME"/dotfiles/tmux/.tmux.conf "$HOME"/.tmux.conf;
 ln -sf "$HOME"/dotfiles/.vimrc "$HOME"/.vimrc;
 ln -sf "$HOME"/dotfiles/.zshrc "$HOME"/.zshrc;
-ln -sf "$HOME"/dotfiles/.bashrc "$HOME"/.bashrc;
 ln -sf "$HOME"/dotfiles/nvim "$HOME"/.config/;
 
 # Install TPM plugins.

@@ -13,7 +13,7 @@
   bindings = [
     # { key = "Q", mods = "Command", action = "None"}
     # { key = "L", mods = "Control", chars = "Left"}
-    # { key = "L", mods = "Control", chars = "\u0001l" },           # cmd+t           -> ctrl+a c
+    # { key = "L", mods = "Control", chars = "\u0001l" },   # cmd+t -> ctrl+a c
   ]
 
 [general]
