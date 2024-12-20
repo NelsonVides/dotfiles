@@ -126,8 +126,6 @@ return {
         end
     },
 
-    { 'andymass/vim-matchup' },
-
     { 'rmagatti/alternate-toggler',
         event = { "BufReadPost" }, -- lazy load after reading a buffer
         config = function()
