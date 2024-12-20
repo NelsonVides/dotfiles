@@ -153,13 +153,10 @@ return {
         config = true,
     },
 
-    { 'nanozuki/tabby.nvim',
-        lazy = false,
-        event = 'VimEnter',
+    { 'nanozuki/tabby.nvim', lazy = false, event = 'VimEnter',
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
-            require('tabby.tabline').use_preset('active_wins_at_tail', {
-                lualine_theme = "vscode",        -- lualine theme name
+            require('tabby.tabline').use_preset('tab_only', {
                 theme = {
                     fill = 'TabLineFill',       -- tabline background
                     head = 'TabLine',           -- head element highlight
@@ -174,18 +171,18 @@ return {
 
     { 'andrewferrier/wrapping.nvim', lazy = true,
         cmd = "ToggleWrapMode",
-        ft = {"markdown", "norg"},
+        ft = {"markdown"},
         config = function()
             require("wrapping").setup({
                 auto_set_mode_filetype_allowlist = {
                     "asciidoc", "gitcommit", "latex", "mail",
-                    "markdown", "rst", "tex", "text", "norg",
+                    "markdown", "rst", "tex", "text",
                 },
             })
         end
     },
 
-    { 'johnfrankmorgan/whitespace.nvim',
+    { 'johnfrankmorgan/whitespace.nvim', lazy = true,
         config = function ()
             local whitespace = require('whitespace-nvim')
             whitespace.setup {
@@ -199,7 +196,9 @@ return {
                 ignore_terminal = true,
             }
             vim.keymap.set('n', '<Leader>s', whitespace.trim)
-        end
+        end,
+        keys = {
+            { "<leader>s", "<cmd>lua require('whitespace-nvim').trim()<cr>" },
+        },
     },
-
 }
