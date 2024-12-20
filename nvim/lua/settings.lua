@@ -47,6 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- autocmd FileType elixir setlocal commentstring=#\ %s
 
+-- We disable netrw because we're using our own file explorer plugin
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.o.termguicolors = true
