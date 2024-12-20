@@ -8,7 +8,6 @@ return {
             { "<leader>b", "<cmd>:Git blame<cr>" },
         },
     },
-    { 'sindrets/diffview.nvim', lazy = true },
 
     { 'jiaoshijie/undotree', lazy = true,
         dependencies = 'nvim-lua/plenary.nvim',
@@ -115,47 +114,6 @@ return {
                 }
             }
         end
-    },
-
-    { 'backdround/global-note.nvim', lazy = true,
-        cmd = { 'GlobalNote' },
-        config = function()
-            local global_note = require("global-note")
-            local get_project_dir = function()
-                local project_directory, err = vim.loop.cwd()
-                if project_directory == nil then
-                    vim.notify(err, vim.log.levels.WARN)
-                    return nil
-                end
-                return project_directory
-            end
-            local get_project_name = function()
-                local project_directory = get_project_dir()
-                if project_directory == nil then return nil end
-                local project_name = vim.fs.basename(project_directory)
-                if project_name == nil then
-                    vim.notify("Unable to get the project name", vim.log.levels.WARN)
-                    return nil
-                end
-                return project_name
-            end
-            global_note.setup({
-                additional_presets = {
-                    projects = {
-                        title = "Projects Note",
-                        command_name = "ProjectsNote",
-                        directory = get_project_dir,
-                        filename = function() return get_project_name() .. ".md" end,
-                    }
-                }
-            })
-            vim.keymap.set("n", "<leader>m", global_note.toggle_note)
-            vim.keymap.set("n", "<leader>p", function() global_note.toggle_note('projects') end)
-        end,
-        keys = {
-            { "<leader>m", "<cmd>:GlobalNote<cr>" },
-            { "<leader>p", "<cmd>:ProjectsNote<cr>" },
-        },
     },
 
     { 'andymass/vim-matchup' },
