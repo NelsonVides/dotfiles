@@ -19,6 +19,7 @@ return {
     { 'saadparwaiz1/cmp_luasnip' },
 
     -- cmp
+    { 'onsails/lspkind.nvim' },
     { 'chrisgrieser/cmp_yanky' },
     { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'lukas-reineke/cmp-under-comparator' },
@@ -40,10 +41,13 @@ return {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-calc',
             'hrsh7th/cmp-cmdline',
+            'onsails/lspkind.nvim',
+            'zbirenbaum/copilot-cmp',
         },
         config = function()
             local cmp = require('cmp')
             local luasnip = require('luasnip')
+            local lspkind = require('lspkind')
             cmp.setup({
                 window = {},
                 snippet = {
@@ -65,11 +69,25 @@ return {
                         cmp.config.compare.order,
                     },
                 },
+                formatting = {
+                    format = lspkind.cmp_format({
+                        mode = "symbol_text",
+                        menu = ({
+                            buffer = "[Buffer]",
+                            nvim_lsp = "[LSP]",
+                            luasnip = "[LuaSnip]",
+                            nvim_lua = "[Lua]",
+                            latex_symbols = "[Latex]",
+                        }),
+                        symbol_map = { Copilot = "" }
+                    }),
+                },
                 sources = cmp.config.sources(
                     {
                         { name = 'nvim_lsp' },
                         { name = 'nvim_lsp_signature_help' },
                         { name = 'luasnip' },
+                        { name = "copilot" },
                         { name = 'buffer',
                             option = {
                                 get_bufnrs = function()
@@ -148,6 +166,8 @@ return {
                             end
                         elseif luasnip.locally_jumpable(1) then
                             luasnip.jump(1)
+                        elseif require("copilot.suggestion").is_visible() then
+                            require("copilot.suggestion").accept()
                         else
                             fallback()
                         end

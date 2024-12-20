@@ -106,4 +106,21 @@ return {
 
     { 'p00f/clangd_extensions.nvim', lazy = true, config = true },
 
+    { 'zbirenbaum/copilot.lua', lazy = true,
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require('copilot').setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            })
+        end
+    },
+
+    { 'zbirenbaum/copilot-cmp', lazy = true,
+        config = function ()
+            require("copilot_cmp").setup()
+        end
+    },
+
 }
