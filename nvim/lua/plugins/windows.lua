@@ -93,7 +93,16 @@ return {
             require("nvim-tree").setup {
                 on_attach = my_on_attach,
                 view = {
-                    float = {enable = true}
+                    float = {enable = true},
+                    width = {
+                        min = 30,
+                        max = 60
+                    }
+                },
+                renderer = {
+                    indent_markers = {
+                        enable = true
+                    }
                 },
                 filters = {
                     git_ignored = false,
