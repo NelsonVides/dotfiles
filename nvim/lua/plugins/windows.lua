@@ -92,6 +92,8 @@ return {
             end
             require("nvim-tree").setup {
                 on_attach = my_on_attach,
+                disable_netrw = true,
+                hijack_netrw = true,
                 view = {
                     float = {enable = true},
                     width = {
@@ -105,7 +107,7 @@ return {
                     }
                 },
                 filters = {
-                    git_ignored = false,
+                    git_ignored = true,
                     custom = {'*.beam'}
                 }
             }
