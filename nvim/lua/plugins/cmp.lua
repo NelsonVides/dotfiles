@@ -57,12 +57,12 @@ return {
                 },
                 sorting = {
                     comparators = {
-                        function(...) return require('cmp_buffer'):compare_locality(...) end,
+                        cmp.config.compare.locality,
                         cmp.config.compare.recently_used,
-                        cmp.config.compare.exact,
-                        cmp.config.compare.offset,
                         cmp.config.compare.score,
+                        cmp.config.compare.exact,
                         require("clangd_extensions.cmp_scores"),
+                        cmp.config.compare.offset,
                         cmp.config.compare.kind,
                         cmp.config.compare.sort_text,
                         cmp.config.compare.length,
@@ -84,10 +84,10 @@ return {
                 },
                 sources = cmp.config.sources(
                     {
-                        { name = 'nvim_lsp' },
-                        { name = 'nvim_lsp_signature_help' },
-                        { name = 'luasnip' },
-                        { name = "copilot" },
+                        { name = 'nvim_lsp', priority = 1000 },
+                        { name = 'nvim_lsp_signature_help', priority = 750 },
+                        { name = "copilot", priority = 500 },
+                        { name = 'luasnip', priority = 250 },
                         { name = 'buffer',
                             option = {
                                 get_bufnrs = function()
