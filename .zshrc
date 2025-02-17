@@ -114,7 +114,9 @@ else
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     export XDG_RUNTIME_DIR=/run/user/$UID
     export BROWSER="xdg-open"
-    export PATH="/home/videsnelson/.local/bin:$PATH"
+    export ASDF_DATA_DIR="/home/videsnelson/.asdf"
+    export PATH="$ASDF_DATA_DIR/shims:$PATH"
+    export PATH="/home/videsnelson/bin:$PATH"
 fi
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     export GPG_TTY=$TTY
