@@ -5,7 +5,7 @@ return {
             require("nvim-treesitter.install").prefer_git = true
             require('nvim-treesitter.configs').setup {
                 ensured_installed = {
-                    "erlang", "elixir", "heex",
+                    "erlang", "elixir", "heex", "gleam",
                     "c", "cpp", "rust",
                     "lua", "luadoc", "vimdoc", "norg", "graphql",
                     "sql", "bash", "make", "cmake", "diff", "dockerfile",
