@@ -79,7 +79,10 @@ return {
                             nvim_lua = "[Lua]",
                             latex_symbols = "[Latex]",
                         }),
-                        symbol_map = { Copilot = "" }
+                        symbol_map = {
+                            Copilot = "",
+                            codestral = '󱎥'
+                        }
                     }),
                 },
                 sources = cmp.config.sources(
@@ -88,7 +91,7 @@ return {
                         { name = 'nvim_lsp_signature_help', priority = 750 },
                         { name = "copilot", priority = 500 },
                         { name = 'luasnip', priority = 250 },
-                        { name = 'buffer',
+                        { name = 'buffer', priority = 100,
                             option = {
                                 get_bufnrs = function()
                                     local bufs = {}
