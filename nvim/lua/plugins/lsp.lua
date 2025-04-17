@@ -1,6 +1,7 @@
 return {
     { 'neovim/nvim-lspconfig',
         dependencies = {
+            'p00f/clangd_extensions.nvim',
             'hrsh7th/cmp-nvim-lsp',
         },
 
@@ -45,6 +46,7 @@ return {
                 cmd = {path_to_elp, 'server'},
                 on_attach = on_attach,
                 capabilities = capabilities,
+                filetypes = { "erlang" },
                 flags = {
                     exit_timeout = 0,
                 }
@@ -68,7 +70,4 @@ return {
             })
         end
     },
-
-    { 'p00f/clangd_extensions.nvim', lazy = true, config = true },
-
 }

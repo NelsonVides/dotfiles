@@ -1,7 +1,5 @@
 return {
     -- Snippets
-    { 'rafamadriz/friendly-snippets' },
-    { 'honza/vim-snippets' },
     { 'L3MON4D3/LuaSnip',
         build = "make install_jsregexp",
         dependencies = {
@@ -9,7 +7,6 @@ return {
             'honza/vim-snippets'
         },
         config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
             require("luasnip.loaders.from_snipmate").lazy_load()
             require("luasnip.loaders.from_vscode").lazy_load({
                 paths = { vim.fn.stdpath("config") .. "/snippets" },
@@ -21,21 +18,15 @@ return {
     -- cmp
     { 'onsails/lspkind.nvim' },
     { 'chrisgrieser/cmp_yanky' },
-    { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'lukas-reineke/cmp-under-comparator' },
     { 'petertriho/cmp-git' },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-calc' },
-    { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/nvim-cmp',
         dependencies = {
             'L3MON4D3/LuaSnip',
             'chrisgrieser/cmp_yanky',
-            'hrsh7th/cmp-nvim-lsp-signature-help',
             'lukas-reineke/cmp-under-comparator',
             'petertriho/cmp-git',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
@@ -48,6 +39,28 @@ return {
             local cmp = require('cmp')
             local luasnip = require('luasnip')
             local lspkind = require('lspkind')
+            local symbol_map = {
+                Method = "m",
+                Constructor = "",
+                Field = "",
+                Interface = "",
+                Module = "",
+                Property = "",
+                Unit = "",
+                Enum = "",
+                Keyword = "",
+                Snippet = "",
+                Reference = "",
+                EnumMember = "",
+                Struct = "",
+                Event = "",
+                Copilot = "",
+                codestral = '󱎥',
+                gemini = '',
+                Groq = '',
+                Openrouter = '󱂇',
+                Ollama = '󰳆',
+            }
             cmp.setup({
                 window = {},
                 snippet = {
@@ -79,10 +92,7 @@ return {
                             nvim_lua = "[Lua]",
                             latex_symbols = "[Latex]",
                         }),
-                        symbol_map = {
-                            Copilot = "",
-                            codestral = '󱎥'
-                        }
+                        symbol_map = symbol_map
                     }),
                 },
                 sources = cmp.config.sources(
